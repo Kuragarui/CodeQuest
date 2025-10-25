@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://kcy61stcohri"]
+
+[ext_resource type="Texture2D" uid="uid://lhg8uhfk3qu5" path="res://assets/Character_animation/GRP_CHARAC/ikalawang_halimaw_angryarlene/frame 1.png" id="1_a4ywr"]
+[ext_resource type="Script" uid="uid://wju1c52tufvp" path="res://scenes/enemy_1.gd" id="1_k4auq"]
+[ext_resource type="Texture2D" uid="uid://1wmudiho6ewf" path="res://assets/Character_animation/GRP_CHARAC/ikalawang_halimaw_angryarlene/frame 2.png" id="2_k4auq"]
+[ext_resource type="Texture2D" uid="uid://ci1dtgmd8tvue" path="res://assets/Character_animation/GRP_CHARAC/ikalawang_halimaw_angryarlene/frame 3.png" id="3_fdqbe"]
+[ext_resource type="Texture2D" uid="uid://c7f4imphljs26" path="res://assets/Character_animation/GRP_CHARAC/ikalawang_halimaw_angryarlene/frame 4.png" id="4_a2yeo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvrhm"]
+atlas = ExtResource("1_a4ywr")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxmbh"]
+atlas = ExtResource("2_k4auq")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7du6s"]
+atlas = ExtResource("3_fdqbe")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dp05"]
+atlas = ExtResource("4_a2yeo")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_82mwo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvrhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxmbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7du6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6dp05")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4ywr"]
+size = Vector2(161, 20)
+
+[node name="Enemy2" type="Node2D"]
+z_index = 3
+script = ExtResource("1_k4auq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_82mwo")
+autoplay = "default"
+frame_progress = 0.056585036
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-20, 0)
+shape = SubResource("RectangleShape2D_a4ywr")
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-101, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(61, 0)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

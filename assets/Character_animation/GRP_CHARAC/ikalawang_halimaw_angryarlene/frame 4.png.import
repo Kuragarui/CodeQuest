@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2ek4ligwlcjh"
-path="res://.godot/imported/frame 6.png-e5aedf257171fd9a8f1d89aa3fadce49.ctex"
+uid="uid://c7f4imphljs26"
+path="res://.godot/imported/frame 4.png-2befa3e3c0ab1f817d0783fdec6714fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sundalong bert/frame 6.png"
-dest_files=["res://.godot/imported/frame 6.png-e5aedf257171fd9a8f1d89aa3fadce49.ctex"]
+source_file="res://assets/Character_animation/GRP_CHARAC/ikalawang_halimaw_angryarlene/frame 4.png"
+dest_files=["res://.godot/imported/frame 4.png-2befa3e3c0ab1f817d0783fdec6714fe.ctex"]
 
 [params]
 

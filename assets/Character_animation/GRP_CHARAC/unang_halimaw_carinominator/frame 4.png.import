@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8a64wtm322ga"
-path="res://.godot/imported/frame 2.png-9cdc6c301233dd1e737b7031aa59f7af.ctex"
+uid="uid://bwkkjxberopal"
+path="res://.godot/imported/frame 4.png-9cd1ac0317ba2d98251dc7bb608e3501.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sundalong bert/frame 2.png"
-dest_files=["res://.godot/imported/frame 2.png-9cdc6c301233dd1e737b7031aa59f7af.ctex"]
+source_file="res://assets/Character_animation/GRP_CHARAC/unang_halimaw_carinominator/frame 4.png"
+dest_files=["res://.godot/imported/frame 4.png-9cd1ac0317ba2d98251dc7bb608e3501.ctex"]
 
 [params]
 

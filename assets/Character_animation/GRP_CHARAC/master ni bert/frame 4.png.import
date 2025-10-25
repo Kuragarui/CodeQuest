@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc870syruufle"
-path="res://.godot/imported/frame 5.png-3db1040cf1d1b09950830f92d8df26b2.ctex"
+uid="uid://bpvo3p0t4hvfy"
+path="res://.godot/imported/frame 4.png-0000ea7b05fde926c2cf45e049428e6d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sundalong bert/frame 5.png"
-dest_files=["res://.godot/imported/frame 5.png-3db1040cf1d1b09950830f92d8df26b2.ctex"]
+source_file="res://assets/Character_animation/GRP_CHARAC/master ni bert/frame 4.png"
+dest_files=["res://.godot/imported/frame 4.png-0000ea7b05fde926c2cf45e049428e6d.ctex"]
 
 [params]
 

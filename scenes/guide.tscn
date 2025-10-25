@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://c3ycaa4cb5qpj"]
+
+[ext_resource type="Texture2D" uid="uid://bu0oaq4bqyfo3" path="res://assets/Character_animation/GRP_CHARAC/guide ni bert/frame 1.png" id="1_gajip"]
+[ext_resource type="Texture2D" uid="uid://b1lfmn3nhrs6t" path="res://assets/Character_animation/GRP_CHARAC/guide ni bert/frame 2.png" id="2_83y8a"]
+[ext_resource type="Texture2D" uid="uid://c5qdj6o46jkfc" path="res://assets/Character_animation/GRP_CHARAC/guide ni bert/frame 3.png" id="3_utvnm"]
+[ext_resource type="Texture2D" uid="uid://eu7pgfh6t65k" path="res://assets/Character_animation/GRP_CHARAC/guide ni bert/frame 4.png" id="4_rn84f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de3e4"]
+atlas = ExtResource("1_gajip")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7llt"]
+atlas = ExtResource("2_83y8a")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql8b2"]
+atlas = ExtResource("3_utvnm")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xiro"]
+atlas = ExtResource("4_rn84f")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0rcq0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_de3e4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7llt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql8b2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xiro")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxloj"]
+size = Vector2(40.714287, 20)
+
+[node name="Guide" type="Node2D"]
+z_index = 3
+scale = Vector2(0.7, 0.7)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_0rcq0")
+autoplay = "default"
+frame_progress = 0.32202652
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_wxloj")

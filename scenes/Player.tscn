@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://dhbm5dkq7d8oa"]
 
-[ext_resource type="Texture2D" uid="uid://clnlokqmnqe5j" path="res://assets/sundalong bert/frame 1.png" id="1_2tbpg"]
-[ext_resource type="Texture2D" uid="uid://c8a64wtm322ga" path="res://assets/sundalong bert/frame 2.png" id="2_5oqko"]
-[ext_resource type="Texture2D" uid="uid://dsvm7dc5cnpv7" path="res://assets/sundalong bert/frame 3.png" id="3_8dyya"]
-[ext_resource type="Texture2D" uid="uid://du6dmbyr2jofm" path="res://assets/sundalong bert/frame 4.png" id="4_dv2cq"]
-[ext_resource type="Texture2D" uid="uid://bc870syruufle" path="res://assets/sundalong bert/frame 5.png" id="5_8nrsx"]
-[ext_resource type="Texture2D" uid="uid://2ek4ligwlcjh" path="res://assets/sundalong bert/frame 6.png" id="6_j0dim"]
+[ext_resource type="Texture2D" uid="uid://clnlokqmnqe5j" path="res://assets/Character_animation/sundalong bert/frame 1.png" id="1_2tbpg"]
+[ext_resource type="Texture2D" uid="uid://c8a64wtm322ga" path="res://assets/Character_animation/sundalong bert/frame 2.png" id="2_5oqko"]
+[ext_resource type="Texture2D" uid="uid://dsvm7dc5cnpv7" path="res://assets/Character_animation/sundalong bert/frame 3.png" id="3_8dyya"]
+[ext_resource type="Texture2D" uid="uid://du6dmbyr2jofm" path="res://assets/Character_animation/sundalong bert/frame 4.png" id="4_dv2cq"]
+[ext_resource type="Texture2D" uid="uid://bc870syruufle" path="res://assets/Character_animation/sundalong bert/frame 5.png" id="5_8nrsx"]
+[ext_resource type="Texture2D" uid="uid://2ek4ligwlcjh" path="res://assets/Character_animation/sundalong bert/frame 6.png" id="6_j0dim"]
 
 [sub_resource type="GDScript" id="GDScript_265yp"]
 script/source = "extends CharacterBody2D

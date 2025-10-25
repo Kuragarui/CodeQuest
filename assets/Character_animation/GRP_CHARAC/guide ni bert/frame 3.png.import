@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clnlokqmnqe5j"
-path="res://.godot/imported/frame 1.png-e58a50c10d2885e8efb8a35d2cd8fbeb.ctex"
+uid="uid://c5qdj6o46jkfc"
+path="res://.godot/imported/frame 3.png-6f5fad2e6de77e540556bcedde985c17.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sundalong bert/frame 1.png"
-dest_files=["res://.godot/imported/frame 1.png-e58a50c10d2885e8efb8a35d2cd8fbeb.ctex"]
+source_file="res://assets/Character_animation/GRP_CHARAC/guide ni bert/frame 3.png"
+dest_files=["res://.godot/imported/frame 3.png-6f5fad2e6de77e540556bcedde985c17.ctex"]
 
 [params]
 

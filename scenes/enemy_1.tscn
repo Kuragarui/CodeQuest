@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://djny6600ym5kr"]
+
+[ext_resource type="Script" uid="uid://wju1c52tufvp" path="res://scenes/enemy_1.gd" id="1_d3026"]
+[ext_resource type="Texture2D" uid="uid://4a57qixc68qj" path="res://assets/Character_animation/GRP_CHARAC/unang_halimaw_carinominator/frame 1.png" id="1_ovk8a"]
+[ext_resource type="Texture2D" uid="uid://cokpvym0bpx58" path="res://assets/Character_animation/GRP_CHARAC/unang_halimaw_carinominator/frame 2.png" id="2_gqj32"]
+[ext_resource type="Texture2D" uid="uid://gnjxc0skapd" path="res://assets/Character_animation/GRP_CHARAC/unang_halimaw_carinominator/frame 3.png" id="3_wswjf"]
+[ext_resource type="Texture2D" uid="uid://bwkkjxberopal" path="res://assets/Character_animation/GRP_CHARAC/unang_halimaw_carinominator/frame 4.png" id="4_sa1y5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3u0vs"]
+atlas = ExtResource("1_ovk8a")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5scw"]
+atlas = ExtResource("2_gqj32")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1piqj"]
+atlas = ExtResource("3_wswjf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jq6mw"]
+atlas = ExtResource("4_sa1y5")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o7p17"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3u0vs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5scw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1piqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jq6mw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3026"]
+size = Vector2(159.5, 41)
+
+[node name="Enemy1" type="Node2D"]
+z_index = 3
+script = ExtResource("1_d3026")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_o7p17")
+autoplay = "default"
+frame_progress = 0.21590179
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, -10.5)
+shape = SubResource("RectangleShape2D_d3026")
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-32, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(34, 0)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
