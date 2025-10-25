@@ -1,0 +1,127 @@
+[gd_scene load_steps=16 format=3 uid="uid://dhbm5dkq7d8oa"]
+
+[ext_resource type="Texture2D" uid="uid://clnlokqmnqe5j" path="res://assets/sundalong bert/frame 1.png" id="1_2tbpg"]
+[ext_resource type="Texture2D" uid="uid://c8a64wtm322ga" path="res://assets/sundalong bert/frame 2.png" id="2_5oqko"]
+[ext_resource type="Texture2D" uid="uid://dsvm7dc5cnpv7" path="res://assets/sundalong bert/frame 3.png" id="3_8dyya"]
+[ext_resource type="Texture2D" uid="uid://du6dmbyr2jofm" path="res://assets/sundalong bert/frame 4.png" id="4_dv2cq"]
+[ext_resource type="Texture2D" uid="uid://bc870syruufle" path="res://assets/sundalong bert/frame 5.png" id="5_8nrsx"]
+[ext_resource type="Texture2D" uid="uid://2ek4ligwlcjh" path="res://assets/sundalong bert/frame 6.png" id="6_j0dim"]
+
+[sub_resource type="GDScript" id="GDScript_265yp"]
+script/source = "extends CharacterBody2D
+
+@onready var animated_sprite = $AnimatedSprite2D
+
+var speed = 100
+var last_direction = 1  # 1 = right, -1 = left
+
+func _physics_process(delta):
+	var direction = Vector2.ZERO
+
+	if Input.is_action_pressed(\"ui_right\"):
+		direction.x += 1
+	elif Input.is_action_pressed(\"ui_left\"):
+		direction.x -= 1
+
+	if Input.is_action_pressed(\"ui_up\"):
+		direction.y -= 1
+	elif Input.is_action_pressed(\"ui_down\"):
+		direction.y += 1
+
+	# Movement
+	if direction != Vector2.ZERO:
+		direction = direction.normalized()
+		velocity = direction * speed
+		move_and_slide()
+
+		# Save last horizontal direction
+		if direction.x > 0:
+			last_direction = 1
+		elif direction.x < 0:
+			last_direction = -1
+
+		# Flip sprite based on last direction
+		animated_sprite.flip_h = last_direction == -1
+
+		# Always play walk animation
+		if not animated_sprite.is_playing():
+			animated_sprite.frame = 0
+			animated_sprite.play(\"walk\")
+	else:
+		# Stop movement but keep facing last direction
+		velocity = Vector2.ZERO
+		move_and_slide()
+		animated_sprite.stop()
+		animated_sprite.flip_h = last_direction == -1
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1hhh"]
+atlas = ExtResource("1_2tbpg")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqqum"]
+atlas = ExtResource("2_5oqko")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gn0on"]
+atlas = ExtResource("3_8dyya")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_siec0"]
+atlas = ExtResource("4_dv2cq")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xifru"]
+atlas = ExtResource("5_8nrsx")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcwji"]
+atlas = ExtResource("6_j0dim")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gwbg4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1hhh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqqum")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gn0on")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_siec0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xifru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcwji")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_78bc2"]
+radius = 3.33333
+height = 17.1429
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
+z_as_relative = false
+scale = Vector2(0.7, 0.7)
+script = SubResource("GDScript_265yp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_gwbg4")
+animation = &"walk"
+frame = 5
+frame_progress = 0.70488
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.14286)
+shape = SubResource("CapsuleShape2D_78bc2")
