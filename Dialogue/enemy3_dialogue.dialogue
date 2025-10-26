@@ -8,6 +8,7 @@ Keeper of Decisions: I guard the paths of choice. Which keyword checks a conditi
 ~ correct
 
 Keeper of Decisions: Correct! The 'if' statement controls the flow of your code.
+do DialogueManager.get_meta("current_enemy").mark_defeated()
 => END
 
 ~ wrong

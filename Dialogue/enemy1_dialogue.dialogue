@@ -1,15 +1,13 @@
 ~ start
-
 Lord Printar: Speak, mortal. What prints in Python?
 - print("Hello") => correct
 - something else => wrong
 
 ~ correct
-
 Lord Printar: Correct. The print() brings words to life.
+do DialogueManager.get_meta("current_enemy").mark_defeated()
 => END
 
 ~ wrong
-
 Lord Printar: Wrong. Learn the print() function and return.
 => END

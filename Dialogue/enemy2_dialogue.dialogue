@@ -8,6 +8,7 @@ Number Warden: Halt! Prove your worth with numbers. What is 5 + 3 in Python?
 ~ correct
 
 Number Warden: Correct! You understand arithmetic. Pass freely.
+do DialogueManager.get_meta("current_enemy").mark_defeated()
 => END
 
 ~ wrong

@@ -12,47 +12,86 @@ script/source = "extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
 
-var speed = 100
-var last_direction = 1  # 1 = right, -1 = left
+signal fight_started
+signal fight_ended
+
+var speed := 100
+var last_direction := 1  # 1 = right, -1 = left
+
+# --- Interaction states ---
+var talked_to_guide := false
+var talked_to_master := false
+
+# --- Battle state ---
+var fight_active := false
+
+func _ready():
+	add_to_group(\"Player\")
+	# Connect to NPCs if they exist
+	var guide = get_node_or_null(\"../Guide\")
+	var master = get_node_or_null(\"../Master\")
+	
+	if guide:
+		guide.connect(\"talked_to\", Callable(self, \"_on_talked_to_guide\"))
+	if master:
+		master.connect(\"talked_to\", Callable(self, \"_on_talked_to_master\"))
 
 func _physics_process(delta):
-	var direction = Vector2.ZERO
-
-	if Input.is_action_pressed(\"ui_right\"):
-		direction.x += 1
-	elif Input.is_action_pressed(\"ui_left\"):
-		direction.x -= 1
-
-	if Input.is_action_pressed(\"ui_up\"):
-		direction.y -= 1
-	elif Input.is_action_pressed(\"ui_down\"):
-		direction.y += 1
-
-	# Movement
+	var direction := Vector2.ZERO
+	
+	# --- Movement Input ---
+	direction.x = int(Input.is_action_pressed(\"ui_right\")) - int(Input.is_action_pressed(\"ui_left\"))
+	direction.y = int(Input.is_action_pressed(\"ui_down\")) - int(Input.is_action_pressed(\"ui_up\"))
+	
 	if direction != Vector2.ZERO:
 		direction = direction.normalized()
 		velocity = direction * speed
 		move_and_slide()
-
-		# Save last horizontal direction
-		if direction.x > 0:
-			last_direction = 1
-		elif direction.x < 0:
-			last_direction = -1
-
-		# Flip sprite based on last direction
+		
+		# Flip and animate
+		last_direction = 1 if direction.x > 0 else -1 if direction.x < 0 else last_direction
 		animated_sprite.flip_h = last_direction == -1
-
-		# Always play walk animation
+		
 		if not animated_sprite.is_playing():
-			animated_sprite.frame = 0
 			animated_sprite.play(\"walk\")
 	else:
-		# Stop movement but keep facing last direction
 		velocity = Vector2.ZERO
 		move_and_slide()
 		animated_sprite.stop()
 		animated_sprite.flip_h = last_direction == -1
+
+# --- NPC interaction handlers ---
+func _on_talked_to_guide():
+	talked_to_guide = true
+	print(\"✅ Talked to Guide\")
+
+func _on_talked_to_master():
+	talked_to_master = true
+	print(\"✅ Talked to Master\")
+
+# --- Fight control ---
+func start_fight():
+	if fight_active:
+		return
+	fight_active = true
+	print(\"⚔️ Fight started!\")
+	emit_signal(\"fight_started\")
+
+func end_fight():
+	if not fight_active:
+		return
+	fight_active = false
+	print(\"🏁 Fight ended!\")
+	emit_signal(\"fight_ended\")
+
+# --- Enemy defeat handler ---
+func defeat_enemy1():
+	var enemy1 = get_node_or_null(\"../Enemy1\")
+	if enemy1:
+		enemy1.mark_defeated()
+		print(\"✅ Enemy1 defeated by player!\")
+	else:
+		print(\"⚠️ Enemy1 not found!\")
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n1hhh"]
