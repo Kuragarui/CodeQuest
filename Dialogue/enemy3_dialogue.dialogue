@@ -1,0 +1,16 @@
+~ start
+
+Keeper of Decisions: I guard the paths of choice. Which keyword checks a condition in Python?
+- if => correct
+- conditional => wrong
+- check => wrong
+
+~ correct
+
+Keeper of Decisions: Correct! The 'if' statement controls the flow of your code.
+=> END
+
+~ wrong
+
+Keeper of Decisions: Wrong! Python uses 'if' to check conditions, not other keywords.
+=> END

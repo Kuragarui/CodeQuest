@@ -1,0 +1,16 @@
+~ start
+
+Number Warden: Halt! Prove your worth with numbers. What is 5 + 3 in Python?
+- 8 => correct
+- print(5 + 3) => wrong
+- "8" => wrong
+
+~ correct
+
+Number Warden: Correct! You understand arithmetic. Pass freely.
+=> END
+
+~ wrong
+
+Number Warden: Wrong! In Python, 5 + 3 equals 8. No print() needed for calculation.
+=> END

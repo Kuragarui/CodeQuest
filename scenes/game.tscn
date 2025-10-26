@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bkr8hxa1q63xy"]
+[gd_scene load_steps=13 format=3 uid="uid://bkr8hxa1q63xy"]
 
 [ext_resource type="Texture2D" uid="uid://div7w2mmq7eh8" path="res://assets/character and tileset/Dungeon_Tileset.png" id="1_lqlv3"]
 [ext_resource type="PackedScene" uid="uid://dhbm5dkq7d8oa" path="res://scenes/Player.tscn" id="2_rk5pu"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://djny6600ym5kr" path="res://scenes/enemy_1.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://kcy61stcohri" path="res://scenes/enemy_2.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://ckgvr84ono8yc" path="res://scenes/enemy_3.tscn" id="7_u5sy4"]
+[ext_resource type="Script" uid="uid://c3rodes2l3gxb" path="res://addons/dialogue_manager/dialogue_manager.gd" id="8_gee14"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_syyk0"]
 texture = ExtResource("1_lqlv3")
@@ -344,3 +345,6 @@ position = Vector2(955, 954)
 
 [node name="enemy3" parent="." instance=ExtResource("7_u5sy4")]
 position = Vector2(255, 632)
+
+[node name="DialogueManager" type="Node" parent="."]
+script = ExtResource("8_gee14")

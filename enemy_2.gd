@@ -3,22 +3,22 @@ extends Node2D
 const SPEED = 60
 var direction = 1
 var is_interacting = false
-var npc_name = "Keeper of Decisions"
+var npc_name = "Number Warden"
 
-@onready var ray_cast_up = $RayCastUp
-@onready var ray_cast_down = $RayCastDown
+@onready var ray_cast_right = $RayCastRight
+@onready var ray_cast_left = $RayCastLeft
 @onready var animated_sprite = $AnimatedSprite2D
 
 func _process(delta):
 	if not is_interacting:
-		# Reverse direction when hitting top or bottom walls
-		if ray_cast_down.is_colliding():
+		if ray_cast_right.is_colliding():
 			direction = -1
-		elif ray_cast_up.is_colliding():
+			animated_sprite.flip_h = true
+		elif ray_cast_left.is_colliding():
 			direction = 1
+			animated_sprite.flip_h = false
 		
-		# Move vertically
-		position.y += direction * SPEED * delta
+		position.x += direction * SPEED * delta
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("Player"):
@@ -31,5 +31,5 @@ func _on_Area2D_body_exited(body):
 		print(npc_name + " watches you leave...")
 
 func show_dialog():
-	var dialogue_resource = load("res://Dialogue/enemy3_dialogue.dialogue")
+	var dialogue_resource = load("res://Dialogue/enemy2_dialogue.dialogue")
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource, "start")

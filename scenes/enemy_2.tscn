@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://kcy61stcohri"]
 
 [ext_resource type="Texture2D" uid="uid://lhg8uhfk3qu5" path="res://assets/Character_animation/GRP_CHARAC/ikalawang_halimaw_angryarlene/frame 1.png" id="1_a4ywr"]
-[ext_resource type="Script" uid="uid://wju1c52tufvp" path="res://scenes/enemy_1.gd" id="1_k4auq"]
+[ext_resource type="Script" uid="uid://c7t0r7bdwyiuk" path="res://enemy_2.gd" id="1_k4auq"]
 [ext_resource type="Texture2D" uid="uid://1wmudiho6ewf" path="res://assets/Character_animation/GRP_CHARAC/ikalawang_halimaw_angryarlene/frame 2.png" id="2_k4auq"]
 [ext_resource type="Texture2D" uid="uid://ci1dtgmd8tvue" path="res://assets/Character_animation/GRP_CHARAC/ikalawang_halimaw_angryarlene/frame 3.png" id="3_fdqbe"]
 [ext_resource type="Texture2D" uid="uid://c7f4imphljs26" path="res://assets/Character_animation/GRP_CHARAC/ikalawang_halimaw_angryarlene/frame 4.png" id="4_a2yeo"]
