@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5fog6ykwm74q"]
+
+[ext_resource type="Texture2D" uid="uid://cdm45jiamxdpk" path="res://control/assets/dpad_element_north.png" id="1_0cc44"]
+[ext_resource type="Script" uid="uid://cymcopln3hx2b" path="res://control/scripts/touch_control.gd" id="1_vv1gg"]
+[ext_resource type="Texture2D" uid="uid://c73i34bpf878b" path="res://control/assets/dpad_element_west.png" id="2_vv1gg"]
+[ext_resource type="Texture2D" uid="uid://d1v0nih1qjbcc" path="res://control/assets/dpad_element_east.png" id="3_rj16u"]
+[ext_resource type="Texture2D" uid="uid://dlmawcsw6f5j2" path="res://control/assets/dpad_element_south.png" id="4_12q2u"]
+
+[node name="touchControl" type="CanvasLayer"]
+script = ExtResource("1_vv1gg")
+
+[node name="Up" type="TouchScreenButton" parent="."]
+position = Vector2(121.000015, 382)
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("1_0cc44")
+action = "ui_up"
+
+[node name="Left" type="TouchScreenButton" parent="."]
+position = Vector2(69, 439.00003)
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("2_vv1gg")
+action = "ui_left"
+
+[node name="Right" type="TouchScreenButton" parent="."]
+position = Vector2(176.00002, 439.00003)
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("3_rj16u")
+action = "ui_right"
+
+[node name="Down" type="TouchScreenButton" parent="."]
+position = Vector2(122.000015, 495)
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("4_12q2u")
+action = "ui_down"
+
+[connection signal="pressed" from="Up" to="." method="_on_up_pressed"]
+[connection signal="released" from="Up" to="." method="_on_up_released"]
+[connection signal="pressed" from="Left" to="." method="_on_left_pressed"]
+[connection signal="released" from="Left" to="." method="_on_left_released"]
+[connection signal="pressed" from="Right" to="." method="_on_right_pressed"]
+[connection signal="released" from="Right" to="." method="_on_right_released"]
+[connection signal="pressed" from="Down" to="." method="_on_down_pressed"]
+[connection signal="released" from="Down" to="." method="_on_down_released"]

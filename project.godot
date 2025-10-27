@@ -34,6 +34,11 @@ walk={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+pointing/emulate_mouse_from_touch=false
+
 [internationalization]
 
 locale/translations_pot_files=PackedStringArray("res://Dialogue/enemy1_dialogue.dialogue", "res://Dialogue/enemy2_dialogue.dialogue", "res://Dialogue/enemy3_dialogue.dialogue", "res://Dialogue/guider_dialogue.dialogue", "res://Dialogue/master_mann_dialogue.dialogue")
