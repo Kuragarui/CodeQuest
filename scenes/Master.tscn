@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://do77oab6nhiyy"]
+[gd_scene load_steps=12 format=3 uid="uid://do77oab6nhiyy"]
 
 [ext_resource type="Texture2D" uid="uid://boynp0jc2fyb5" path="res://assets/Character_animation/GRP_CHARAC/master ni bert/frame 1.png" id="1_a3ru1"]
+[ext_resource type="Script" uid="uid://krqdhqo6t67i" path="res://scenes/master.gd" id="1_wjax6"]
 [ext_resource type="Texture2D" uid="uid://v6cnn1bk4hx4" path="res://assets/Character_animation/GRP_CHARAC/master ni bert/frame 2.png" id="2_wjax6"]
 [ext_resource type="Texture2D" uid="uid://0g3gfvavx2w5" path="res://assets/Character_animation/GRP_CHARAC/master ni bert/frame 3.png" id="3_hlhxn"]
 [ext_resource type="Texture2D" uid="uid://bpvo3p0t4hvfy" path="res://assets/Character_animation/GRP_CHARAC/master ni bert/frame 4.png" id="4_ynw6u"]
@@ -46,6 +47,7 @@ size = Vector2(49, 20)
 
 [node name="Master" type="Node2D"]
 z_index = 3
+script = ExtResource("1_wjax6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

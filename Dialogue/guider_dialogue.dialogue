@@ -1,0 +1,123 @@
+~ start
+Guider Elden: Greetings, traveler. I am Guider Elden, guide of the beginner’s path.
+=> teach1
+
+~ teach1
+Guider Elden: Before you write code, you must understand what coding truly means.
+=> teach2
+
+~ teach2
+Guider Elden: Coding, or programming, is the act of giving instructions to a computer.
+=> teach3
+
+~ teach3
+Guider Elden: These instructions are written in a language the computer understands — like Python.
+=> teach4
+
+~ teach4
+Guider Elden: Think of it as teaching a loyal golem: it follows every command exactly as you say.
+=> teach5
+
+~ teach5
+Guider Elden: Computers cannot think — they only obey. So your code must be clear and precise.
+=> teach6
+
+~ teach6
+Guider Elden: Now, let’s talk about something you’ll use in almost every program — variables.
+=> teach7
+
+~ teach7
+Guider Elden: A variable is like a box with a name, used to store information.
+=> teach8
+
+~ teach8
+Guider Elden: For example, you can write: name = "Alice"
+=> teach9
+
+~ teach9
+Guider Elden: Here, the box is called 'name', and it stores the word "Alice".
+=> teach10
+
+~ teach10
+Guider Elden: Variables can store different kinds of data — numbers, words, or even True or False values.
+=> question_variable
+
+~ question_variable
+Guider Elden: What is a variable?
+- A container for storing data => correct_variable
+- A random number => wrong_variable
+
+~ correct_variable
+Guider Elden: Excellent! A variable holds data so you can use it later in your program.
+=> teach11
+
+~ wrong_variable
+Guider Elden: Not quite. A variable isn’t random — it’s like a box that holds information.
+Guider Elden: Let’s review again from the start.
+=> start
+
+~ teach11
+Guider Elden: Now, let’s talk about what kinds of data those boxes can hold — we call these data types.
+=> teach12
+
+~ teach12
+Guider Elden: Data types tell Python what kind of information is stored in a variable.
+=> teach13
+
+~ teach13
+Guider Elden: The most common data types are:
+1. Integers — whole numbers like 5 or -2
+2. Floats — decimal numbers like 3.14
+3. Strings — text in quotes like "Hello"
+4. Booleans — True or False
+=> teach14
+
+~ teach14
+Guider Elden: For example:
+age = 18
+price = 3.5
+name = "Elden"
+is_student = True
+=> teach15
+
+~ teach15
+Guider Elden: Each variable holds a different kind of data. Python treats each one based on its type.
+=> teach16
+
+~ teach16
+Guider Elden: There are also more advanced types, like lists, which can hold multiple values — like a backpack full of items.
+=> teach17
+
+~ teach17
+Guider Elden: But for now, just remember: data types define what kind of information your variable holds.
+=> question_datatype
+
+~ question_datatype
+Guider Elden: Which of these is a String in Python?
+- "Hello World" => correct_datatype
+- 123 => wrong_datatype
+- True => wrong_datatype2
+
+~ correct_datatype
+Guider Elden: That’s right! Strings are text enclosed in quotation marks — like "Hello" or "Game Start".
+Guider Elden: Data types are the foundation of programming — you must master them well.
+=> teach18
+
+~ wrong_datatype
+Guider Elden: Not quite. 123 is a number — specifically an integer, not a string.
+Guider Elden: Let’s go over data types again.
+=> teach11
+
+~ wrong_datatype2
+Guider Elden: Incorrect. True is a Boolean — it represents truth or falsehood, not text.
+Guider Elden: Let’s review data types once more.
+=> teach11
+
+~ teach18
+Guider Elden: Now that you know about variables and data types, you are ready to learn how to make your code speak.
+=> teach19
+
+~ teach19
+Guider Elden: Seek out Master Mann in this dungeon. He will teach you how to print messages, use operators, and control your programs.
+Guider Elden: May your code be clear, and your logic unbroken.
+=> END

@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://c3ycaa4cb5qpj"]
+[gd_scene load_steps=12 format=3 uid="uid://c3ycaa4cb5qpj"]
 
+[ext_resource type="Script" uid="uid://ofa0vhbvn63o" path="res://scenes/guide.gd" id="1_fd7ko"]
 [ext_resource type="Texture2D" uid="uid://bu0oaq4bqyfo3" path="res://assets/Character_animation/GRP_CHARAC/guide ni bert/frame 1.png" id="1_gajip"]
 [ext_resource type="Texture2D" uid="uid://b1lfmn3nhrs6t" path="res://assets/Character_animation/GRP_CHARAC/guide ni bert/frame 2.png" id="2_83y8a"]
 [ext_resource type="Texture2D" uid="uid://c5qdj6o46jkfc" path="res://assets/Character_animation/GRP_CHARAC/guide ni bert/frame 3.png" id="3_utvnm"]
@@ -47,6 +48,7 @@ size = Vector2(40.714287, 20)
 [node name="Guide" type="Node2D"]
 z_index = 3
 scale = Vector2(0.7, 0.7)
+script = ExtResource("1_fd7ko")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.7, 0.7)
@@ -59,3 +61,6 @@ frame_progress = 0.32202652
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_wxloj")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

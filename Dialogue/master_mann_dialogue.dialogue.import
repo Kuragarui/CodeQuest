@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ckjpy75xlnoib"
+path="res://.godot/imported/master_mann_dialogue.dialogue-a8c242410ff64f7cd0342f9f392285f3.tres"
+
+[deps]
+
+source_file="res://Dialogue/master_mann_dialogue.dialogue"
+dest_files=["res://.godot/imported/master_mann_dialogue.dialogue-a8c242410ff64f7cd0342f9f392285f3.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,146 @@
+~ start
+Master Mann: So, the traveler of Guider Elden arrives at last.
+=> teach1
+
+~ teach1
+Master Mann: I am Master Mann, teacher of the coding arts.  
+Here, you will learn to make your code speak, think, and decide.
+=> teach2
+
+~ teach2
+Master Mann: Let us begin with the most fundamental ability — to speak through code.
+=> teach3
+
+~ teach3
+Master Mann: In Python, we use the print() function to display messages or values on the screen.
+=> teach4
+
+~ teach4
+Master Mann: For example:\n   print("Hello, world!")
+=> teach5
+
+~ teach5
+Master Mann: This command tells the computer to print the text inside the quotes.  
+The result would be:\n   Hello, world!
+=> teach6
+
+~ teach6
+Master Mann: You can also print variables like this:\n   name = "Luna"\n   print("My name is", name)
+=> teach7
+
+~ teach7
+Master Mann: The print() function helps you communicate with your program — it shows results, messages, or debugging information.
+=> question_print
+
+~ question_print
+Master Mann: What does the print() function do?
+- It displays text or data on the screen => correct_print
+- It stores numbers in memory => wrong_print
+- It stops the program => wrong_print2
+
+~ correct_print
+Master Mann: Well done! The print() function allows your code to speak to the user.
+=> teach8
+
+~ wrong_print
+Master Mann: No. print() doesn’t store anything — it shows messages on the screen.
+=> teach3
+
+~ wrong_print2
+Master Mann: Incorrect. print() doesn’t stop your code; it communicates it.
+=> teach3
+
+~ teach8
+Master Mann: Next, let us study arithmetic operators — the tools for calculation.
+=> teach9
+
+~ teach9
+Master Mann: Arithmetic operators are symbols that perform math.  
+The most common ones are:\n   + (addition)\n   - (subtraction)\n   * (multiplication)\n   / (division)\n   % (modulus)
+=> teach10
+
+~ teach10
+Master Mann: For example:\n   x = 10\n   y = 3\n   print(x + y)  # outputs 13\n   print(x % y)  # outputs 1
+=> teach11
+
+~ teach11
+Master Mann: The modulus (%) operator gives the remainder of a division.  
+So 10 % 3 = 1 because 3 fits into 10 three times with 1 left over.
+=> question_math
+
+~ question_math
+Master Mann: What would be the result of 7 % 2 ?
+- 3 => wrong_math
+- 1 => correct_math
+- 2 => wrong_math2
+
+~ correct_math
+Master Mann: Excellent. 7 divided by 2 leaves a remainder of 1.
+=> teach12
+
+~ wrong_math
+Master Mann: Not quite. 7 divided by 2 leaves 1 left over, not 3.
+=> teach9
+
+~ wrong_math2
+Master Mann: Incorrect. 2 fits into 7 three times — with 1 remainder.
+=> teach9
+
+~ teach12
+Master Mann: Now, before we make the program decide, you must understand comparison operators.
+=> teach13
+
+~ teach13
+Master Mann: Comparison operators are used to compare two values and return True or False.  
+They are:\n   >  (greater than)\n   <  (less than)\n   >= (greater than or equal to)\n   <= (less than or equal to)\n   == (equal to)\n   != (not equal to)
+=> teach14
+
+~ teach14
+Master Mann: For example:\n   print(12 > 9)   # True\n   print(5 == 7)  # False\n   print(10 != 3) # True
+=> teach15
+
+~ teach15
+Master Mann: These operators will be the foundation of control structures — they let your code test conditions.
+=> teach16
+
+~ teach16
+Master Mann: Now, let’s make your code think — with control structures.
+=> teach17
+
+~ teach17
+Master Mann: A control structure allows a program to make decisions.  
+The most common one is the if-statement.
+=> teach18
+
+~ teach18
+Master Mann: Example:\n   age = 18\n   if age >= 18:\n       print("You are an adult.")\n   else:\n       print("You are a minor.")
+=> teach19
+
+~ teach19
+Master Mann: The if keyword checks a condition.  
+If the condition is True, the indented code runs.  
+Otherwise, the else part runs.
+=> question_if
+
+~ question_if
+Master Mann: What will this code print if age = 10?\n   if age >= 18:\n       print("Adult")\n   else:\n       print("Minor")
+- Minor => correct_if
+- Adult => wrong_if
+
+~ correct_if
+Master Mann: Correct! Since 10 is less than 18, the condition is False — so “Minor” is printed.
+=> teach20
+
+~ wrong_if
+Master Mann: Incorrect. The code checks if age is 18 or higher — 10 is not, so it prints “Minor”.
+=> teach17
+
+~ teach20
+Master Mann: You now know how to print messages, do math, compare values, and make choices.  
+These are the foundations of all programming logic.
+=> teach21
+
+~ teach21
+Master Mann: Practice these well, traveler, and soon your code will not only obey — it will think.  
+Good luck on your journey, traveler.
+=> END
