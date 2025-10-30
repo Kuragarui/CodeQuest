@@ -9,6 +9,10 @@ var npc_name = "Lord Printar"
 @onready var ray_cast_right = $RayCastRight
 @onready var ray_cast_left = $RayCastLeft
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var quest_manager = QuestManager
+
+# 🟢 NEW: Scene change tracking
+var has_played_defeat_animation = false
 
 func _process(delta):
 	# Only move if not interacting and not defeated
@@ -44,8 +48,36 @@ func mark_defeated():
 		is_defeated = true
 		print(npc_name + " has been defeated!")
 		
+		# 🔥 CRITICAL FIX: Complete the quest so it updates to the next one
+		quest_manager.complete_quest("defeat_lord_printar")
+		
 		# Optional: Visual feedback (make enemy transparent or hide)
 		animated_sprite.modulate = Color(1, 1, 1, 0.5)
 		
 		# Stop moving permanently
 		set_process(false)
+		
+		# 🟢 NEW: Play defeat animation/effects
+		if not has_played_defeat_animation:
+			_play_defeat_scene_change()
+
+# 🟢 NEW: Defeat animation with scene changes
+func _play_defeat_scene_change():
+	has_played_defeat_animation = true
+	
+	# Create dramatic defeat effect
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(self, "scale", Vector2(1.1, 1.1), 0.3)
+	tween.tween_property(self, "modulate", Color.RED, 0.3)
+	
+	await tween.finished
+	
+	# Fade out and collapse
+	var tween2 = create_tween()
+	tween2.set_parallel(true)
+	tween2.tween_property(self, "position:y", position.y + 50, 1.0)
+	tween2.tween_property(self, "modulate:a", 0.0, 1.0)
+	tween2.tween_property(self, "scale", Vector2(0.5, 0.5), 1.0)
+	
+	print("💀 " + npc_name + " defeated with scene change!")

@@ -1,118 +1,16 @@
 ~ start
-Master Mann: Welcome, apprentice. I am Master Mann, guardian of the Temple of Logic.
-=> teach1
 
-~ teach1
-Master Mann: Before you can shape the world with code, you must first learn to make your program speak.
-=> teach2
+Lord Printar: Speak, mortal. What prints in Python?
+- print("Hello") => correct
+- something else => wrong
 
-~ teach2
-Master Mann: In Python, we use the print() function to show messages on the screen.
-=> teach3
+~ correct
 
-~ teach3
-Master Mann: For example:
-print("Hello, world!")
-This tells Python to display the words inside the quotation marks.
-=> teach4
-
-~ teach4
-Master Mann: Try it yourself:
-print("I am learning coding!")
-It will appear just like spoken words from your program.
-=> teach5
-
-~ teach5
-Master Mann: Now, let’s move to arithmetic — the art of numbers.
-=> teach6
-
-~ teach6
-Master Mann: Python can add (+), subtract (-), multiply (*), and divide (/).
-For example: 5 + 3 gives 8, and 10 / 2 gives 5.
-=> teach7
-
-~ teach7
-Master Mann: You can also store results in variables:
-result = 5 * 4
-print(result)  # shows 20
-=> teach8
-
-~ teach8
-Master Mann: Arithmetic is how we calculate and reason — but true power lies in control.
-=> teach9
-
-~ teach9
-Master Mann: Control structures let your program make decisions.
-=> teach10
-
-~ teach10
-Master Mann: The simplest is the if statement:
-if x > 10:
-	print("x is large")
-=> teach11
-
-~ teach11
-Master Mann: This checks a condition — if it’s True, the code inside runs.
-=> teach12
-
-~ teach12
-Master Mann: You can also add else:
-if x > 10:
-	print("x is large")
-else:
-	print("x is small")
-=> teach13
-
-~ teach13
-Master Mann: This is how you make your code think and react.
-=> question_control
-
-~ question_control
-Master Mann: What does an if statement do?
-- It repeats code forever => wrong_control
-- It decides what code to run based on a condition => correct_control
-- It stops the program completely => wrong_control2
-
-~ correct_control
-Master Mann: Well done, student. You begin to grasp logic and flow.
-=> teach14
-
-~ wrong_control
-Master Mann: No, that is a loop. The if statement chooses — it does not repeat.
-=> teach9
-
-~ wrong_control2
-Master Mann: Incorrect. The if statement decides, not halts. Study again.
-=> teach9
-
-~ teach14
-Master Mann: One last lesson — logic operators help combine conditions: and, or, and not.
-=> teach15
-
-~ teach15
-Master Mann: Example:
-if age > 18 and is_student:
-	print("You are an adult student")
-=> teach16
-
-~ teach16
-Master Mann: These allow for complex decisions in your programs.
-=> question_final
-
-~ question_final
-Master Mann: What does 'and' mean in a condition?
-- Both sides must be True => correct_final
-- Either side can be True => wrong_final
-- It always returns False => wrong_final2
-
-~ correct_final
-Master Mann: Excellent. You are now ready to code with logic and wisdom.
+Lord Printar: Correct. The print() brings words to life.
+do DialogueManager.get_meta("current_enemy").mark_defeated()
 => END
 
-~ wrong_final
-Master Mann: Not quite. That is what 'or' does. Study again.
-=> teach14
+~ wrong
 
-~ wrong_final2
-Master Mann: No, 'and' only returns True when both conditions are True.
-=> teach14
+Lord Printar: Wrong. Learn the print() function and return.
+=> END

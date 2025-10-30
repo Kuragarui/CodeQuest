@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbyqm1tgv4elm"]
+
+[ext_resource type="Texture2D" uid="uid://bofibbpdcavrs" path="res://assets/final bg.png" id="1_cottp"]
+
+[node name="Quests" type="Control"]
+layout_mode = 3
+anchor_right = 0.238
+anchor_bottom = 0.35200003
+offset_right = -0.17599487
+offset_bottom = -19.096024
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PLAYERQUEST" type="NinePatchRect" parent="."]
+layout_mode = 1
+offset_right = 266.0
+offset_bottom = 118.0
+texture = ExtResource("1_cottp")
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Name" type="RichTextLabel" parent="PLAYERQUEST"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 52.0
+offset_right = 193.0
+offset_bottom = 80.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+text = "Player Quest"
+fit_content = true
+
+[node name="Quest1" type="NinePatchRect" parent="PLAYERQUEST"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0037593986
+anchor_top = 0.88135594
+anchor_right = 0.0037593986
+anchor_bottom = 0.88135594
+offset_right = 266.0
+offset_bottom = 118.0
+texture = ExtResource("1_cottp")
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Tasks" type="RichTextLabel" parent="PLAYERQUEST/Quest1"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 35.0
+offset_right = 234.0
+offset_bottom = 211.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "-Talk to Guide
+-Talk to Master
+-Defeat Lord Printar
+-Defeat Number Warden
+-Defeat Keeper of Decisions"
+fit_content = true

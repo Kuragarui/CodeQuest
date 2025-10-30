@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bkr8hxa1q63xy"]
+[gd_scene load_steps=31 format=3 uid="uid://bkr8hxa1q63xy"]
 
 [ext_resource type="Texture2D" uid="uid://div7w2mmq7eh8" path="res://assets/character and tileset/Dungeon_Tileset.png" id="1_lqlv3"]
 [ext_resource type="Script" uid="uid://jlfbsa32im8r" path="res://scenes/node_2d.gd" id="2_kvpfn"]
@@ -16,7 +16,10 @@
 [ext_resource type="Script" uid="uid://ev4pnw58v16b" path="res://scenes/e_3_door_2.gd" id="16_ssvqc"]
 [ext_resource type="Script" uid="uid://uq7w51ewwbd2" path="res://scenes/e_3_door_3.gd" id="17_264po"]
 [ext_resource type="PackedScene" uid="uid://c5fog6ykwm74q" path="res://control/touch_control.tscn" id="17_rysoc"]
+[ext_resource type="PackedScene" uid="uid://dbyqm1tgv4elm" path="res://scenes/quests.tscn" id="18_264po"]
 [ext_resource type="Script" uid="uid://dsainvk747ty8" path="res://scenes/game_manager.gd" id="18_ssvqc"]
+[ext_resource type="Script" uid="uid://d1mmqfi2sbuq" path="res://scenes/quests.gd" id="19_1kice"]
+[ext_resource type="Script" uid="uid://drll4vkuj5uvq" path="res://scenes/quest_manager.gd" id="19_264po"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_syyk0"]
 texture = ExtResource("1_lqlv3")
@@ -344,10 +347,10 @@ position = Vector2(-24, -383)
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 3.0517578e-05
-offset_top = 3.0517578e-05
-offset_right = 40.00003
-offset_bottom = 40.00003
+offset_left = 173.0
+offset_top = 433.0
+offset_right = 302.0
+offset_bottom = 493.0
 
 [node name="touchControl" parent="Control" instance=ExtResource("17_rysoc")]
 
@@ -471,3 +474,16 @@ shape = SubResource("RectangleShape2D_1kice")
 
 [node name="game_manager" type="Node" parent="."]
 script = ExtResource("18_ssvqc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Quests" parent="CanvasLayer" instance=ExtResource("18_264po")]
+anchor_right = 0.287
+offset_left = 46.0
+offset_top = 46.0
+offset_right = -40.623993
+offset_bottom = -44.728027
+script = ExtResource("19_1kice")
+
+[node name="QuestManager" type="Node" parent="."]
+script = ExtResource("19_264po")

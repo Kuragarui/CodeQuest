@@ -11,6 +11,7 @@
 script/source = "extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var quest_manager = get_node_or_null(\"/root/Game/QuestManager\")
 
 signal fight_started
 signal fight_ended
@@ -25,8 +26,12 @@ var talked_to_master := false
 # --- Battle state ---
 var fight_active := false
 
+# 🟢 NEW: Track scene state changes
+var can_fight_enemy := false
+
 func _ready():
 	add_to_group(\"Player\")
+	
 	# Connect to NPCs if they exist
 	var guide = get_node_or_null(\"../Guide\")
 	var master = get_node_or_null(\"../Master\")
@@ -64,10 +69,29 @@ func _physics_process(delta):
 func _on_talked_to_guide():
 	talked_to_guide = true
 	print(\"✅ Talked to Guide\")
+	
+	# 🟢 Update quest tracker
+	if quest_manager:
+		quest_manager.complete_quest(\"talk_to_guide\")
+	else:
+		print(\"⚠️ QuestManager not found in tree!\")
+	
+	# 🟢 NEW: Update scene state
+	can_fight_enemy = true
+	print(\"🎬 [Player] Enemy fight is now available!\")
 
 func _on_talked_to_master():
 	talked_to_master = true
 	print(\"✅ Talked to Master\")
+	
+	# 🟢 Update quest tracker
+	if quest_manager:
+		quest_manager.complete_quest(\"talk_to_master\")
+	else:
+		print(\"⚠️ QuestManager not found in tree!\")
+	
+	# 🟢 NEW: Additional scene state changes
+	print(\"🎬 [Player] Master training complete!\")
 
 # --- Fight control ---
 func start_fight():
@@ -90,6 +114,15 @@ func defeat_enemy1():
 	if enemy1:
 		enemy1.mark_defeated()
 		print(\"✅ Enemy1 defeated by player!\")
+		
+		# 🟢 Update quest tracker
+		if quest_manager:
+			quest_manager.complete_quest(\"defeat_enemy1\")
+		else:
+			print(\"⚠️ QuestManager not found in tree!\")
+		
+		# 🟢 NEW: Final scene state
+		print(\"🎬 [Player] Quest line complete!\")
 	else:
 		print(\"⚠️ Enemy1 not found!\")
 "
