@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bkr8hxa1q63xy"]
+[gd_scene load_steps=32 format=3 uid="uid://bkr8hxa1q63xy"]
 
 [ext_resource type="Texture2D" uid="uid://div7w2mmq7eh8" path="res://assets/character and tileset/Dungeon_Tileset.png" id="1_lqlv3"]
 [ext_resource type="Script" uid="uid://jlfbsa32im8r" path="res://scenes/node_2d.gd" id="2_kvpfn"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://dsainvk747ty8" path="res://scenes/game_manager.gd" id="18_ssvqc"]
 [ext_resource type="Script" uid="uid://d1mmqfi2sbuq" path="res://scenes/quests.gd" id="19_1kice"]
 [ext_resource type="Script" uid="uid://drll4vkuj5uvq" path="res://scenes/quest_manager.gd" id="19_264po"]
+[ext_resource type="PackedScene" uid="uid://lo576ngbl7vq" path="res://scenes/main_menu.tscn" id="21_5newe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_syyk0"]
 texture = ExtResource("1_lqlv3")
@@ -343,6 +344,12 @@ size = Vector2(6, 16)
 
 [node name="Game" type="Node2D"]
 position = Vector2(-24, -383)
+
+[node name="main_menu" parent="." instance=ExtResource("21_5newe")]
+offset_left = 765.0
+offset_top = 501.0
+offset_right = 765.0
+offset_bottom = 501.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
