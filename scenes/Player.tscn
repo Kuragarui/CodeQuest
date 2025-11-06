@@ -26,7 +26,7 @@ var talked_to_master := false
 # --- Battle state ---
 var fight_active := false
 
-# 🟢 NEW: Track scene state changes
+#  Track scene state changes
 var can_fight_enemy := false
 
 func _ready():
@@ -68,44 +68,44 @@ func _physics_process(delta):
 # --- NPC interaction handlers ---
 func _on_talked_to_guide():
 	talked_to_guide = true
-	print(\"✅ Talked to Guide\")
+	print(\"Talked to Guide\")
 	
-	# 🟢 Update quest tracker
+	# Update quest tracker
 	if quest_manager:
 		quest_manager.complete_quest(\"talk_to_guide\")
 	else:
-		print(\"⚠️ QuestManager not found in tree!\")
+		print(\"QuestManager not found in tree!\")
 	
-	# 🟢 NEW: Update scene state
+	#  Update scene state
 	can_fight_enemy = true
 	print(\"🎬 [Player] Enemy fight is now available!\")
 
 func _on_talked_to_master():
 	talked_to_master = true
-	print(\"✅ Talked to Master\")
+	print(\"Talked to Master\")
 	
-	# 🟢 Update quest tracker
+	# Update quest tracker
 	if quest_manager:
 		quest_manager.complete_quest(\"talk_to_master\")
 	else:
 		print(\"⚠️ QuestManager not found in tree!\")
 	
-	# 🟢 NEW: Additional scene state changes
-	print(\"🎬 [Player] Master training complete!\")
+	# Additional scene state changes
+	print(\" [Player] Master training complete!\")
 
 # --- Fight control ---
 func start_fight():
 	if fight_active:
 		return
 	fight_active = true
-	print(\"⚔️ Fight started!\")
+	print(\" Fight started!\")
 	emit_signal(\"fight_started\")
 
 func end_fight():
 	if not fight_active:
 		return
 	fight_active = false
-	print(\"🏁 Fight ended!\")
+	print(\" Fight ended!\")
 	emit_signal(\"fight_ended\")
 
 # --- Enemy defeat handler ---
@@ -113,18 +113,18 @@ func defeat_enemy1():
 	var enemy1 = get_node_or_null(\"../Enemy1\")
 	if enemy1:
 		enemy1.mark_defeated()
-		print(\"✅ Enemy1 defeated by player!\")
+		print(\" Enemy1 defeated by player!\")
 		
-		# 🟢 Update quest tracker
+		# = Update quest tracker
 		if quest_manager:
 			quest_manager.complete_quest(\"defeat_enemy1\")
 		else:
 			print(\"⚠️ QuestManager not found in tree!\")
 		
-		# 🟢 NEW: Final scene state
-		print(\"🎬 [Player] Quest line complete!\")
+		#  NEW: Final scene state
+		print(\" [Player] Quest line complete!\")
 	else:
-		print(\"⚠️ Enemy1 not found!\")
+		print(\" Enemy1 not found!\")
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n1hhh"]

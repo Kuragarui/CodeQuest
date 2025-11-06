@@ -10,7 +10,7 @@ var npc_name = "Master Mann"
 @onready var interact_area = $Area2D
 @onready var quest_manager = QuestManager
 
-# 🟢 NEW: Track if scene change has occurred
+# Track if scene change has occurred
 var post_dialogue_scene_changed = false
 
 func _ready():
@@ -41,22 +41,22 @@ func _on_dialogue_finished(resource):
 		if not has_talked:
 			has_talked = true
 			emit_signal("talked_to")
-			print("✅ " + npc_name + " talked_to signal emitted!")
+			print( npc_name + " talked_to signal emitted!")
 			
-			# 🟢 Update quest tracker
+			#Update quest tracker
 			if quest_manager:
 				quest_manager.complete_quest("talk_to_master")
 			
-			# 🟢 NEW: Apply scene changes after dialogue
+			#Apply scene changes after dialogue
 			if not post_dialogue_scene_changed:
 				_apply_post_dialogue_scene_change()
 		close_dialog()
 
-# 🟢 NEW: Scene changes after Master dialogue
+#Scene changes after Master dialogue
 func _apply_post_dialogue_scene_change():
 	post_dialogue_scene_changed = true
 	
-	print("🎬 Master scene change applied")
+	print("Master scene change applied")
 
 func close_dialog():
 	var balloon = DialogueManager.get_meta("current_balloon")
