@@ -1,16 +1,47 @@
 ~ start
 
 Lord Printar: Speak, mortal. What prints in Python?
-- print("Hello") => correct
-- something else => wrong
+- print("Hello") => q2
+- echo("Hello") => wrong1
+- say("Hello") => wrong1
+
+~ q2
+
+Lord Printar: Hmph. You know the basics. What will this code print?
+print("3 + 2 =", 3 + 2)
+- 3 + 2 = 5 => q3
+- 5 => wrong2
+- "3 + 2 =" => wrong2
+
+~ q3
+
+Lord Printar: Impressive... One final test.
+What will this print?
+print("Hello" * 3)
+- HelloHelloHello => correct
+- Hello * 3 => wrong3
+- Error => wrong3
 
 ~ correct
 
-Lord Printar: Correct. The print() brings words to life.
+Lord Printar: Correct. You truly understand the power of print().
 do DialogueManager.get_meta("current_enemy").mark_defeated()
 => END
 
-~ wrong
 
-Lord Printar: Wrong. Learn the print() function and return.
+~ wrong1
+
+Lord Printar: Wrong. There is no echo() or say() in Python. Only print() gives voice to code.
+=> END
+
+
+~ wrong2
+
+Lord Printar: Incorrect! The print() can display multiple items, even text and numbers together.
+=> END
+
+
+~ wrong3
+
+Lord Printar: Foolish! The * operator repeats strings in Python. Learn it well.
 => END

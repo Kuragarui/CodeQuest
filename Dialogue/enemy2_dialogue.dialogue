@@ -1,17 +1,51 @@
 ~ start
 
 Number Warden: Halt! Prove your worth with numbers. What is 5 + 3 in Python?
-- 8 => correct
-- print(5 + 3) => wrong
-- "8" => wrong
+- 8 => correct_q1
+- print(5 + 3) => wrong_q1
+- "8" => wrong_q1
 
-~ correct
+~ correct_q1
 
-Number Warden: Correct! You understand arithmetic. Pass freely.
+Number Warden: Correct! You understand arithmetic. Let's see if you can handle more.
+=> q2
+
+~ wrong_q1
+
+Number Warden: Wrong! In Python, 5 + 3 equals 8. No print() needed for calculation.
+=> END
+
+~ q2
+
+Number Warden: What is the result of 10 // 3 in Python?
+- 3 => correct_q2
+- 3.33 => wrong_q2
+- 3.0 => wrong_q2
+
+~ correct_q2
+
+Number Warden: Impressive. You know integer division. One last challenge remains!
+=> q3
+
+~ wrong_q2
+
+Number Warden: Incorrect. '//' performs floor division, so 10 // 3 equals 3.
+=> END
+
+~ q3
+
+Number Warden: What is the result of 7 % 4 in Python?
+- 3 => correct_q3
+- 1 => wrong_q3
+- 0 => wrong_q3
+
+~ correct_q3
+
+Number Warden: Excellent! You truly understand arithmetic operations.
 do DialogueManager.get_meta("current_enemy").mark_defeated()
 => END
 
-~ wrong
+~ wrong_q3
 
-Number Warden: Wrong! In Python, 5 + 3 equals 8. No print() needed for calculation.
+Number Warden: Wrong. The '%' operator gives the remainder — 7 % 4 equals 3.
 => END

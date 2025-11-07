@@ -1,17 +1,42 @@
 ~ start
 
 Keeper of Decisions: I guard the paths of choice. Which keyword checks a condition in Python?
-- if => correct
-- conditional => wrong
-- check => wrong
+- if => q2
+- conditional => wrong1
+- check => wrong1
+
+~ q2
+
+Keeper of Decisions: You chose wisely. Now tell me — what will this print?
+x = 10; if x > 5: print("High") else: print("Low")
+- High => q3
+- Low => wrong2
+- Error => wrong2
+
+~ q3
+
+Keeper of Decisions: Final question. Which keyword handles the opposite of 'if'?
+- else => correct
+- elif => wrong3
+- unless => wrong3
 
 ~ correct
 
-Keeper of Decisions: Correct! The 'if' statement controls the flow of your code.
+Keeper of Decisions: Excellent. You understand the balance of logic.
 do DialogueManager.get_meta("current_enemy").mark_defeated()
 => END
 
-~ wrong
+~ wrong1
 
-Keeper of Decisions: Wrong! Python uses 'if' to check conditions, not other keywords.
+Keeper of Decisions: Wrong! Only 'if' can open the gate of decision.
+=> END
+
+~ wrong2
+
+Keeper of Decisions: Incorrect! The condition x > 5 is true, so 'High' is printed.
+=> END
+
+~ wrong3
+
+Keeper of Decisions: No, 'else' catches what 'if' does not. 'elif' and 'unless' are not its equal.
 => END
