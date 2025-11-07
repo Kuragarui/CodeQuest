@@ -1,11 +1,11 @@
 [gd_scene load_steps=6 format=3 uid="uid://lo576ngbl7vq"]
 
-[ext_resource type="Texture2D" uid="uid://q8nk2mxkvgd2" path="res://mainmenuBG.png" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://d4ade4u7lg8y8" path="res://scenes/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://bhgvqvlh4d0r6" path="res://mainbg.jpg" id="2_bqqt6"]
 [ext_resource type="FontFile" uid="uid://bjn056sk58p66" path="res://assets/Character_animation/sundalong bert/GrapeSoda.ttf" id="3_bqqt6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhts7"]
-bg_color = Color(11.708403, 11.708403, 11.708403, 1)
+bg_color = Color(1, 1, 1, 0.84705883)
 corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
@@ -33,17 +33,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_06t4h")
+texture = ExtResource("2_bqqt6")
 stretch_mode = 1
 
 [node name="ColorRect" type="ColorRect" parent="TextureRect"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.37254903)
+color = Color(15.30028, 15.30028, 15.30028, 0)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
