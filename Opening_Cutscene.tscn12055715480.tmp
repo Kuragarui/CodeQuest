@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckpfaeu8harpk"]
+
+[ext_resource type="Script" uid="uid://bsywa7gc227fo" path="res://opening_cutscene.gd" id="1_dcj8j"]
+[ext_resource type="Texture2D" uid="uid://camjf2m1g330m" path="res://assets/image.jpg" id="2_i32np"]
+[ext_resource type="Script" uid="uid://c3rodes2l3gxb" path="res://addons/dialogue_manager/dialogue_manager.gd" id="3_dcj8j"]
+
+[node name="Opening_Cutscene" type="Node2D"]
+position = Vector2(580, 318)
+script = ExtResource("1_dcj8j")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TitleImage" type="TextureRect" parent="CanvasLayer"]
+offset_right = 1184.0
+offset_bottom = 726.0
+texture = ExtResource("2_i32np")
+
+[node name="FadeControl" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="DialogueManager" type="Node" parent="."]
+script = ExtResource("3_dcj8j")
+
+[connection signal="dialogue_ended" from="DialogueManager" to="." method="_on_dialogue_manager_dialogue_ended"]

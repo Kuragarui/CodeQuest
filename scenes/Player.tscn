@@ -1,11 +1,23 @@
-[gd_scene load_steps=16 format=3 uid="uid://dhbm5dkq7d8oa"]
+[gd_scene load_steps=40 format=3 uid="uid://dhbm5dkq7d8oa"]
 
 [ext_resource type="Texture2D" uid="uid://clnlokqmnqe5j" path="res://assets/Character_animation/sundalong bert/frame 1.png" id="1_2tbpg"]
+[ext_resource type="Texture2D" uid="uid://2chlc4lpmjrx" path="res://assets/Character_animation/sundalong bert/back_walk/frame 1.png" id="1_61ith"]
 [ext_resource type="Texture2D" uid="uid://c8a64wtm322ga" path="res://assets/Character_animation/sundalong bert/frame 2.png" id="2_5oqko"]
+[ext_resource type="Texture2D" uid="uid://bne4giskos1nv" path="res://assets/Character_animation/sundalong bert/back_walk/frame 2.png" id="2_ebwui"]
 [ext_resource type="Texture2D" uid="uid://dsvm7dc5cnpv7" path="res://assets/Character_animation/sundalong bert/frame 3.png" id="3_8dyya"]
+[ext_resource type="Texture2D" uid="uid://c61o88nx6reda" path="res://assets/Character_animation/sundalong bert/back_walk/frame 3.png" id="3_sfy4j"]
 [ext_resource type="Texture2D" uid="uid://du6dmbyr2jofm" path="res://assets/Character_animation/sundalong bert/frame 4.png" id="4_dv2cq"]
+[ext_resource type="Texture2D" uid="uid://d1ivhnesivd15" path="res://assets/Character_animation/sundalong bert/back_walk/frame 4.png" id="4_gv3ic"]
 [ext_resource type="Texture2D" uid="uid://bc870syruufle" path="res://assets/Character_animation/sundalong bert/frame 5.png" id="5_8nrsx"]
+[ext_resource type="Texture2D" uid="uid://gqhsqdhhmw5i" path="res://assets/Character_animation/sundalong bert/back_walk/frame 5.png" id="5_b8lor"]
+[ext_resource type="Texture2D" uid="uid://dp8cgkmslt24w" path="res://assets/Character_animation/sundalong bert/back_walk/frame 6.png" id="6_6e537"]
 [ext_resource type="Texture2D" uid="uid://2ek4ligwlcjh" path="res://assets/Character_animation/sundalong bert/frame 6.png" id="6_j0dim"]
+[ext_resource type="Texture2D" uid="uid://bca4sbdvlgpvm" path="res://assets/Character_animation/GRP_CHARAC/sundalong bert/frame 1.png" id="7_p07f3"]
+[ext_resource type="Texture2D" uid="uid://bws8c8dib5p3w" path="res://assets/Character_animation/GRP_CHARAC/sundalong bert/frame 2.png" id="8_viqgg"]
+[ext_resource type="Texture2D" uid="uid://bqcubjgn41fl" path="res://assets/Character_animation/GRP_CHARAC/sundalong bert/frame 3.png" id="9_fgkxt"]
+[ext_resource type="Texture2D" uid="uid://d1mv0sbnmxvpw" path="res://assets/Character_animation/GRP_CHARAC/sundalong bert/frame 4.png" id="10_xsi7p"]
+[ext_resource type="Texture2D" uid="uid://bmaima7m4n3qb" path="res://assets/Character_animation/GRP_CHARAC/sundalong bert/frame 5.png" id="11_1jpwa"]
+[ext_resource type="Texture2D" uid="uid://254vkc3xvvh3" path="res://assets/Character_animation/GRP_CHARAC/sundalong bert/frame 6.png" id="12_pfeki"]
 
 [sub_resource type="GDScript" id="GDScript_265yp"]
 script/source = "extends CharacterBody2D
@@ -17,7 +29,7 @@ signal fight_started
 signal fight_ended
 
 var speed := 100
-var last_direction := 1  # 1 = right, -1 = left
+var last_direction := 1
 
 # --- Interaction states ---
 var talked_to_guide := false
@@ -25,12 +37,36 @@ var talked_to_master := false
 
 # --- Battle state ---
 var fight_active := false
-
-#  Track scene state changes
 var can_fight_enemy := false
 
 func _ready():
-	add_to_group(\"Player\")
+	add_to_group(\"player\")
+	
+	await get_tree().process_frame
+	
+	var current_scene_path = get_tree().current_scene.scene_file_path
+	print(\"=== Player _ready() ===\")
+	print(\"Current scene:\", current_scene_path)
+	print(\"GlobalData.spawn_position:\", GlobalData.spawn_position)
+	print(\"Player initial position:\", position)
+	
+	# Check if we have a saved spawn position
+	if GlobalData.spawn_position != Vector2.ZERO:
+		position = GlobalData.spawn_position
+		print(\"✓ Spawned at saved position:\", position)
+		
+		# Clear the data after using
+		GlobalData.spawn_position = Vector2.ZERO
+		print(\"🧹 Cleared spawn position\")
+	
+	else:
+		# No saved position - use default PlayerSpawnPoint
+		var spawn_point = get_node_or_null(\"../PlayerSpawnPoint\")
+		if spawn_point:
+			position = spawn_point.global_position
+			print(\"✓ Spawned at PlayerSpawnPoint:\", position)
+		else:
+			print(\"✓ Using default position:\", position)
 	
 	# Connect to NPCs if they exist
 	var guide = get_node_or_null(\"../Guide\")
@@ -44,7 +80,6 @@ func _ready():
 func _physics_process(delta):
 	var direction := Vector2.ZERO
 	
-	# --- Movement Input ---
 	direction.x = int(Input.is_action_pressed(\"ui_right\")) - int(Input.is_action_pressed(\"ui_left\"))
 	direction.y = int(Input.is_action_pressed(\"ui_down\")) - int(Input.is_action_pressed(\"ui_up\"))
 	
@@ -53,11 +88,14 @@ func _physics_process(delta):
 		velocity = direction * speed
 		move_and_slide()
 		
-		# Flip and animate
 		last_direction = 1 if direction.x > 0 else -1 if direction.x < 0 else last_direction
 		animated_sprite.flip_h = last_direction == -1
 		
-		if not animated_sprite.is_playing():
+		if direction.y > 0:
+			animated_sprite.play(\"front_walk\")
+		elif direction.y < 0:
+			animated_sprite.play(\"back_walk\")
+		elif direction.x != 0:
 			animated_sprite.play(\"walk\")
 	else:
 		velocity = Vector2.ZERO
@@ -65,18 +103,15 @@ func _physics_process(delta):
 		animated_sprite.stop()
 		animated_sprite.flip_h = last_direction == -1
 
-# --- NPC interaction handlers ---
 func _on_talked_to_guide():
 	talked_to_guide = true
 	print(\"Talked to Guide\")
 	
-	# Update quest tracker
 	if quest_manager:
 		quest_manager.complete_quest(\"talk_to_guide\")
 	else:
 		print(\"QuestManager not found in tree!\")
 	
-	#  Update scene state
 	can_fight_enemy = true
 	print(\"🎬 [Player] Enemy fight is now available!\")
 
@@ -84,48 +119,90 @@ func _on_talked_to_master():
 	talked_to_master = true
 	print(\"Talked to Master\")
 	
-	# Update quest tracker
 	if quest_manager:
 		quest_manager.complete_quest(\"talk_to_master\")
 	else:
 		print(\"⚠️ QuestManager not found in tree!\")
 	
-	# Additional scene state changes
-	print(\" [Player] Master training complete!\")
+	print(\"📚 [Player] Master training complete!\")
 
-# --- Fight control ---
 func start_fight():
 	if fight_active:
 		return
 	fight_active = true
-	print(\" Fight started!\")
+	print(\"⚔️ Fight started!\")
 	emit_signal(\"fight_started\")
 
 func end_fight():
 	if not fight_active:
 		return
 	fight_active = false
-	print(\" Fight ended!\")
+	print(\"✅ Fight ended!\")
 	emit_signal(\"fight_ended\")
 
-# --- Enemy defeat handler ---
 func defeat_enemy1():
 	var enemy1 = get_node_or_null(\"../Enemy1\")
 	if enemy1:
 		enemy1.mark_defeated()
-		print(\" Enemy1 defeated by player!\")
+		print(\"💀 Enemy1 defeated by player!\")
 		
-		# = Update quest tracker
 		if quest_manager:
 			quest_manager.complete_quest(\"defeat_enemy1\")
 		else:
 			print(\"⚠️ QuestManager not found in tree!\")
 		
-		#  NEW: Final scene state
-		print(\" [Player] Quest line complete!\")
+		print(\"🎉 [Player] Quest line complete!\")
 	else:
-		print(\" Enemy1 not found!\")
+		print(\"⚠️ Enemy1 not found!\")
 "
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axnmu"]
+atlas = ExtResource("1_61ith")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvsjc"]
+atlas = ExtResource("2_ebwui")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxdpb"]
+atlas = ExtResource("3_sfy4j")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agngo"]
+atlas = ExtResource("4_gv3ic")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrixf"]
+atlas = ExtResource("5_b8lor")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmt83"]
+atlas = ExtResource("6_6e537")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4as6"]
+atlas = ExtResource("7_p07f3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1r6t"]
+atlas = ExtResource("8_viqgg")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0asu"]
+atlas = ExtResource("9_fgkxt")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq1a3"]
+atlas = ExtResource("10_xsi7p")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu4mg"]
+atlas = ExtResource("11_1jpwa")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tk6la"]
+atlas = ExtResource("12_pfeki")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n1hhh"]
 atlas = ExtResource("1_2tbpg")
@@ -155,6 +232,52 @@ region = Rect2(0, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_axnmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvsjc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxdpb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agngo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrixf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmt83")
+}],
+"loop": true,
+"name": &"back_walk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4as6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1r6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0asu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fq1a3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu4mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tk6la")
+}],
+"loop": true,
+"name": &"front_walk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_n1hhh")
 }, {
 "duration": 1.0,
@@ -174,7 +297,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 10.0
+"speed": 8.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_78bc2"]
@@ -190,9 +313,7 @@ script = SubResource("GDScript_265yp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_gwbg4")
-animation = &"walk"
-frame = 5
-frame_progress = 0.70488
+animation = &"front_walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.14286)

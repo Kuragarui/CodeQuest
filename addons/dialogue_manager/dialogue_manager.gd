@@ -1,5 +1,6 @@
 extends Node
 
+
 const DialogueResource = preload("./dialogue_resource.gd")
 const DialogueLine = preload("./dialogue_line.gd")
 const DialogueResponse = preload("./dialogue_response.gd")
@@ -39,6 +40,9 @@ signal bridge_dialogue_started(resource: DialogueResource)
 
 ## Used internally
 signal bridge_mutated()
+
+
+
 
 
 ## The list of globals that dialogue can query

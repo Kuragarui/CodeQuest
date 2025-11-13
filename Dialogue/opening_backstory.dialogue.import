@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://37v7pmw5u8w3"
+path="res://.godot/imported/opening_backstory.dialogue-15356ff90f8732fb182ee2ee7d82800c.tres"
+
+[deps]
+
+source_file="res://Dialogue/opening_backstory.dialogue"
+dest_files=["res://.godot/imported/opening_backstory.dialogue-15356ff90f8732fb182ee2ee7d82800c.tres"]
+
+[params]
+
+defaults=true

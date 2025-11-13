@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckpfaeu8harpk"]
+
+[ext_resource type="Script" uid="uid://bsywa7gc227fo" path="res://opening_cutscene.gd" id="1_dcj8j"]
+[ext_resource type="Texture2D" uid="uid://camjf2m1g330m" path="res://assets/image.jpg" id="2_i32np"]
+[ext_resource type="Script" uid="uid://b5luvy2capy7y" path="res://proceed_button.gd" id="3_cb3nu"]
+
+[node name="Opening_Cutscene" type="Node2D"]
+position = Vector2(580, 318)
+script = ExtResource("1_dcj8j")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FadeControl" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_top = -0.27314815
+anchor_right = 0.0030000475
+offset_left = 3.0
+offset_top = 68.0
+offset_right = 1151.544
+offset_bottom = 716.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="TitleImage" type="TextureRect" parent="CanvasLayer"]
+offset_top = -4.0
+offset_right = 1158.0
+offset_bottom = 725.0
+texture = ExtResource("2_i32np")
+
+[node name="ProceedButton" type="Button" parent="CanvasLayer"]
+offset_left = 441.0
+offset_top = 502.0
+offset_right = 698.256
+offset_bottom = 591.31995
+text = "PROCEED"
+script = ExtResource("3_cb3nu")
+
+[connection signal="pressed" from="CanvasLayer/ProceedButton" to="." method="_on_proceed_button_pressed"]

@@ -1,0 +1,31 @@
+~ start
+Narrator: In a distant land, travelers journeyed not for treasure, but for understanding.
+=> scene2
+
+~ scene2
+Narrator: Among them was you — curious, determined, carrying only a notebook and a question.
+=> scene3
+
+~ scene3
+Narrator: You wish to learn Python: a language spoken by scholars, builders, and dreamers.
+=> scene4
+
+~ scene4
+Narrator: But knowledge here is not found in scrolls alone. It is earned through experience.
+=> scene5
+
+~ scene5
+Narrator: Along the way, you will meet guides who teach, guardians who test, and challenges that shape you.
+=> scene6
+
+~ scene6
+Narrator: Your journey begins now, at the first place where learning flows freely.
+=> scene7
+
+~ scene7
+Narrator: Seek the Guider. He offers your first lesson.
+=> endscene
+
+~ endscene
+Narrator: To learn is to travel. To grow is to continue.
+=> END

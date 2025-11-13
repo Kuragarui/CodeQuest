@@ -65,3 +65,4 @@ func _play_defeat_scene_change():
 	tween2.tween_property(self, "modulate:a", 0.0, 1.0)
 	tween2.tween_property(self, "scale", Vector2(0.5, 0.5), 1.0)
 	print( npc_name + " defeated dramatically!")
+	
