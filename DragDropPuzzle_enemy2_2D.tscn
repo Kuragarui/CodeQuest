@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5e7ircypf7a3"]
+
+[ext_resource type="Script" uid="uid://wb3jrp81hdlp" path="res://drag_drop_puzzle_enemy_2_2d.gd" id="1_qt1ow"]
+
+[node name="DragDropPuzzle2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qt1ow")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -11.0
+offset_right = -8.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7058824)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 1
+offset_left = 276.0
+offset_top = 124.0
+offset_right = 876.0
+offset_bottom = 524.0
+
+[node name="QuestionLabel" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Drag the correct Python code to calculate 5 + 3:"
+horizontal_alignment = 1
+
+[node name="DropZone" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
+
+[node name="DropZoneLabel" type="Label" parent="VBoxContainer/DropZone"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CodeBlocksContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="CodeBlock1" type="Button" parent="VBoxContainer/CodeBlocksContainer"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+
+[node name="CodeBlock2" type="Button" parent="VBoxContainer/CodeBlocksContainer"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+
+[node name="CodeBlock3" type="Button" parent="VBoxContainer/CodeBlocksContainer"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+
+[node name="SubmitButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Submit Answer
+"

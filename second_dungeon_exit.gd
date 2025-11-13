@@ -14,7 +14,7 @@ func _ready() -> void:
 	print("=== Dungeon 2 exit door ready ===")
 
 func _on_body_entered(body: Node2D) -> void:
-	if not body.is_in_group("player") or is_transitioning or not can_use:
+	if not body.is_in_group("Player") or is_transitioning or not can_use:
 		return
 	
 	print("✓ Player exiting dungeon 2 to main game...")

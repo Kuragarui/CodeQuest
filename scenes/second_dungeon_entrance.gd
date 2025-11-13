@@ -12,7 +12,7 @@ func _ready() -> void:
 	print("Fade found:", fade != null)
 
 func _on_body_entered(body: Node2D) -> void:
-	if not body.is_in_group("player") or is_transitioning:
+	if not body.is_in_group("Player") or is_transitioning:
 		return
 	
 	print("✓ Player entering dungeon 2...")

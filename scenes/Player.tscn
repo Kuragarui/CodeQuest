@@ -40,7 +40,7 @@ var fight_active := false
 var can_fight_enemy := false
 
 func _ready():
-	add_to_group(\"player\")
+	add_to_group(\"Player\")
 	
 	await get_tree().process_frame
 	
@@ -154,6 +154,14 @@ func defeat_enemy1():
 		print(\"🎉 [Player] Quest line complete!\")
 	else:
 		print(\"⚠️ Enemy1 not found!\")
+
+
+func _on_area_2d_2_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+
+
+func _on_area_2d_2_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_axnmu"]

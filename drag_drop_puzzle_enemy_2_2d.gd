@@ -10,27 +10,27 @@ signal puzzle_completed(success: bool)
 # === 🧩 3 Fill-in-the-Blank Printing Questions ===
 var questions = [
 	{
-		"question": "Fill in the blank to print text in Python:\n_____('Hello World')",
+		"question": "Solve: 15 + 8 * 2 = ?\n(Remember order of operations!)",
 		"choices": [
-			{"text": "print", "correct": true},
-			{"text": "echo", "correct": false},
-			{"text": "say", "correct": false}
+			{"text": "31", "correct": true},
+			{"text": "46", "correct": false},
+			{"text": "23", "correct": false}
 		]
 	},
 	{
-		"question": "Fill in the blank to print without a newline at the end:\nprint('Hi', end=_____)",
+		"question": "Solve: 20 // 3 = ?\n(Integer division)",
 		"choices": [
-			{"text": "''", "correct": true},
-			{"text": "'\\n'", "correct": false},
-			{"text": "' '", "correct": false}
+			{"text": "6", "correct": true},
+			{"text": "7", "correct": false},
+			{"text": "6.67", "correct": false}
 		]
 	},
 	{
-		"question": "Fill in the blank to print the value of variable x:\n_____('x =', x)",
+		"question": "Solve: 17 % 5 = ?\n(Modulo/Remainder)",
 		"choices": [
-			{"text": "print", "correct": true},
-			{"text": "display", "correct": false},
-			{"text": "output", "correct": false}
+			{"text": "2", "correct": true},
+			{"text": "3", "correct": false},
+			{"text": "12", "correct": false}
 		]
 	}
 ]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://y60yw2flbxio"]
+[gd_scene load_steps=24 format=4 uid="uid://y60yw2flbxio"]
 
 [ext_resource type="PackedScene" uid="uid://dhbm5dkq7d8oa" path="res://scenes/Player.tscn" id="1_4rpy5"]
 [ext_resource type="Texture2D" uid="uid://ccdperehbtych" path="res://assets/character and tileset/Dungeon_Tileset_recolored.png" id="2_j2agi"]
@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://blad7mfdtwweh" path="res://assets/character and tileset/Dungeon_Tileset_recolored_v2.png" id="4_4r1g3"]
 [ext_resource type="Script" uid="uid://dttar0bd4ibw7" path="res://second_dungeon_exit.gd" id="5_b5gk3"]
 [ext_resource type="PackedScene" uid="uid://drkn0maj71777" path="res://scenes/enemy_1_d_2.tscn" id="6_jwu1i"]
+[ext_resource type="Script" uid="uid://di17c7dag1ccw" path="res://scenes/enemy_1_d_2.gd" id="7_n8jhk"]
 [ext_resource type="PackedScene" uid="uid://b56wrk4f0n0bg" path="res://scenes/enemy_3_d_2.tscn" id="7_ovgky"]
 [ext_resource type="PackedScene" uid="uid://buv5l2h1ewits" path="res://scenes/enemy_2_d_2.tscn" id="8_2i4m5"]
+[ext_resource type="Script" uid="uid://dg7718n3jvff" path="res://scenes/enemy_2_d_2.gd" id="10_634w0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4r1g3"]
 texture = ExtResource("2_j2agi")
@@ -761,6 +763,15 @@ sources/0 = SubResource("TileSetAtlasSource_kcwpk")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kcwpk"]
 size = Vector2(45, 30)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8jhk"]
+size = Vector2(199, 111)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6mno3"]
+size = Vector2(224, 82)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_634w0"]
+size = Vector2(88, 165)
+
 [node name="SecondDungeon" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -799,9 +810,36 @@ position = Vector2(-3, -17)
 
 [node name="enemy_1_D2" parent="." instance=ExtResource("6_jwu1i")]
 position = Vector2(-229, -160)
+script = ExtResource("7_n8jhk")
 
-[node name="enemy_2_D2" parent="." instance=ExtResource("7_ovgky")]
+[node name="Area2D2" type="Area2D" parent="enemy_1_D2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_1_D2/Area2D2"]
+position = Vector2(3.5, 5.5)
+shape = SubResource("RectangleShape2D_n8jhk")
+
+[node name="enemy_3_D2" parent="." instance=ExtResource("7_ovgky")]
 position = Vector2(-385, 644)
+
+[node name="Area2D2" type="Area2D" parent="enemy_3_D2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_3_D2/Area2D2"]
+position = Vector2(1, 5)
+shape = SubResource("RectangleShape2D_6mno3")
 
 [node name="enemy_2_D3" parent="." instance=ExtResource("8_2i4m5")]
 position = Vector2(-872, 277)
+script = ExtResource("10_634w0")
+
+[node name="Area2D2" type="Area2D" parent="enemy_2_D3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_2_D3/Area2D2"]
+position = Vector2(-1, 10.5)
+shape = SubResource("RectangleShape2D_634w0")
+
+[connection signal="body_entered" from="enemy_1_D2/Area2D2" to="Player" method="_on_area_2d_2_body_entered"]
+[connection signal="body_exited" from="enemy_1_D2/Area2D2" to="Player" method="_on_area_2d_2_body_exited"]
+[connection signal="body_entered" from="enemy_3_D2/Area2D2" to="Player" method="_on_area_2d_2_body_entered"]
+[connection signal="body_exited" from="enemy_3_D2/Area2D2" to="Player" method="_on_area_2d_2_body_exited"]
+[connection signal="body_entered" from="enemy_2_D3/Area2D2" to="Player" method="_on_area_2d_2_body_entered"]
+[connection signal="body_exited" from="enemy_2_D3/Area2D2" to="Player" method="_on_area_2d_2_body_exited"]

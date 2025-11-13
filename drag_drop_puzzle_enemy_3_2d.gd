@@ -10,27 +10,27 @@ signal puzzle_completed(success: bool)
 # === 🧩 3 Fill-in-the-Blank Printing Questions ===
 var questions = [
 	{
-		"question": "Fill in the blank to print text in Python:\n_____('Hello World')",
+		"question": "What will this code print?\n\nx = 10\n\nif x > 5:\n    print('Big')\nelse:\n    print('Small')",
 		"choices": [
-			{"text": "print", "correct": true},
-			{"text": "echo", "correct": false},
-			{"text": "say", "correct": false}
+			{"text": "Big", "correct": true},
+			{"text": "Small", "correct": false},
+			{"text": "10", "correct": false}
 		]
 	},
 	{
-		"question": "Fill in the blank to print without a newline at the end:\nprint('Hi', end=_____)",
+		"question": "What will this code print?\n\nage = 15\n\nif age >= 18:\n    print('Adult')\nelse:\n    print('Minor')",
 		"choices": [
-			{"text": "''", "correct": true},
-			{"text": "'\\n'", "correct": false},
-			{"text": "' '", "correct": false}
+			{"text": "Minor", "correct": true},
+			{"text": "Adult", "correct": false},
+			{"text": "15", "correct": false}
 		]
 	},
 	{
-		"question": "Fill in the blank to print the value of variable x:\n_____('x =', x)",
+		"question": "What will this code print?\n\nnum = 8\n\nif num % 2 == 0:\n    print('Even')\nelse:\n    print('Odd')",
 		"choices": [
-			{"text": "print", "correct": true},
-			{"text": "display", "correct": false},
-			{"text": "output", "correct": false}
+			{"text": "Even", "correct": true},
+			{"text": "Odd", "correct": false},
+			{"text": "8", "correct": false}
 		]
 	}
 ]

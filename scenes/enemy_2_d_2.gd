@@ -1,22 +1,13 @@
 extends Node2D
 
-# Movement variables
-const SPEED = 60
-var direction = 1
-
-# Puzzle variables
 @onready var player = get_tree().get_first_node_in_group("Player")
-@onready var puzzle_scene = preload("res://DragDropPuzzle_enemy3_2D.tscn")
+@onready var puzzle_scene = preload("res://DragDropPuzzle_enemy2_2D.tscn")
 @onready var area2d = $Area2D2
-@onready var animated_sprite = $AnimatedSprite2D
+@onready var animated_sprite = $AnimatedSprite2D  # Dagdag: para sa animation
 var puzzle_instance: Control = null
 var canvas_layer = null
 var puzzle_active := false
-var is_defeated := false
-
-# Movement nodes
-@onready var ray_cast_right = $RayCastRight
-@onready var ray_cast_left = $RayCastLeft
+var is_defeated := false  # Para hindi na mag-trigger ulit
 
 func _ready():
 	if area2d:
@@ -26,43 +17,32 @@ func _ready():
 	else:
 		print("❌ Area2D2 NOT FOUND!")
 
-func _process(delta):
-	# Only move if NOT defeated and NO active puzzle
-	if not is_defeated and not puzzle_active:
-		# Move left/right
-		position.x += direction * SPEED * delta
-		
-		# Flip direction when hitting a wall or edge
-		if ray_cast_right.is_colliding():
-			direction = -1
-			animated_sprite.flip_h = true
-		elif ray_cast_left.is_colliding():
-			direction = 1
-			animated_sprite.flip_h = false
-
 func _on_body_entered(body):
 	if body.is_in_group("Player") and not puzzle_active and not is_defeated:
-		print("Player entered enemy3_2d area — starting puzzle")
+		print("Player entered enemy1_2d area — starting puzzle")
 		puzzle_active = true
 		_show_puzzle()
 
 func _on_body_exited(body):
 	if body.is_in_group("Player"):
-		print("Player left enemy3_2d area")
-		_close_puzzle()
+		print("Player left enemy1_2d area")
+		_close_puzzle()  # Isara yung puzzle pag lumabas
 
 func _show_puzzle():
 	print("🔍 Creating puzzle with CanvasLayer...")
 	
+	# Create a CanvasLayer to ensure it renders on top
 	canvas_layer = CanvasLayer.new()
 	canvas_layer.layer = 100
 	get_tree().root.add_child(canvas_layer)
 	
+	# Instantiate puzzle and add to CanvasLayer
 	puzzle_instance = puzzle_scene.instantiate()
 	canvas_layer.add_child(puzzle_instance)
 	
 	print("✅ Puzzle added to CanvasLayer!")
 	
+	# Connect signal
 	puzzle_instance.connect("puzzle_completed", Callable(self, "_on_puzzle_completed"))
 
 func _close_puzzle():
@@ -90,14 +70,20 @@ func _on_puzzle_completed(success: bool):
 
 func _play_defeat_animation():
 	if animated_sprite:
-		animated_sprite.play("death")
+		# Play defeat animation
+		animated_sprite.play("death")  # Palitan ng animation name mo
+		
+		# Wait for animation to finish
 		await animated_sprite.animation_finished
 		
+		# Optional: Fade out effect
 		var tween = create_tween()
 		tween.tween_property(self, "modulate:a", 0.0, 0.5)
 		await tween.finished
 		
+		# Remove enemy
 		queue_free()
 		print("💀 Enemy removed from scene")
 	else:
+		# Kung walang animation, direkta na lang i-remove
 		queue_free()
