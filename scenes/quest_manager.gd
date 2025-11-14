@@ -100,10 +100,7 @@ func _apply_scene_changes(quest_name: String) -> void:
 			scene_state["final_scene"] = true
 
 func _on_guide_dialogue_complete() -> void:
-	print("📍 Guide interaction finished. Unlocking Guide Door...")
-
-	# 🔓 Open any door that belongs to the "guide_door" group
-	get_tree().call_group("guide_door", "open_door")
+	print("📍 Guide interaction finished.")
 
 func _on_master_dialogue_complete() -> void:
 	print("📍 Master interaction finished.")

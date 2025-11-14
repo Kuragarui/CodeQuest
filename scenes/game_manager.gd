@@ -32,7 +32,7 @@ func complete_game():
 
 func show_completion_popup():
 	var popup = AcceptDialog.new()
-	popup.dialog_text = "🎉 CONGRATULATIONS! 🎉\n\nYou have defeated all enemies!\nGame Complete!"
+	popup.dialog_text = "🎉 CONGRATULATIONS! 🎉\n\nYou have completed Dungeon 1!!"
 	popup.title = "Victory!"
 	popup.ok_button_text = "Awesome!"
 	popup.process_mode = Node.PROCESS_MODE_ALWAYS

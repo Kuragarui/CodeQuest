@@ -1,13 +1,18 @@
 extends Node2D
 
+signal defeated  # ✅ Emitted when puzzle is completed successfully
+
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var puzzle_scene = preload("res://DragDropPuzzle.tscn")
 @onready var area2d = $Area2D2
-@onready var animated_sprite = $AnimatedSprite2D  # Dagdag: para sa animation
+@onready var animated_sprite = $AnimatedSprite2D
+
 var puzzle_instance: Control = null
 var canvas_layer = null
 var puzzle_active := false
-var is_defeated := false  # Para hindi na mag-trigger ulit
+var npc_name = "Malupiton"
+var is_defeated := false
+var has_played_defeat_animation := false
 
 func _ready():
 	if area2d:
@@ -19,71 +24,59 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.is_in_group("Player") and not puzzle_active and not is_defeated:
-		print("Player entered enemy1_2d area — starting puzzle")
+		print("Player entered Malupiton area — starting puzzle")
 		puzzle_active = true
 		_show_puzzle()
 
 func _on_body_exited(body):
 	if body.is_in_group("Player"):
-		print("Player left enemy1_2d area")
-		_close_puzzle()  # Isara yung puzzle pag lumabas
+		_close_puzzle()
 
 func _show_puzzle():
-	print("🔍 Creating puzzle with CanvasLayer...")
-	
-	# Create a CanvasLayer to ensure it renders on top
 	canvas_layer = CanvasLayer.new()
 	canvas_layer.layer = 100
 	get_tree().root.add_child(canvas_layer)
 	
-	# Instantiate puzzle and add to CanvasLayer
 	puzzle_instance = puzzle_scene.instantiate()
 	canvas_layer.add_child(puzzle_instance)
-	
-	print("✅ Puzzle added to CanvasLayer!")
-	
-	# Connect signal
 	puzzle_instance.connect("puzzle_completed", Callable(self, "_on_puzzle_completed"))
 
 func _close_puzzle():
 	if puzzle_instance:
-		print("🚪 Closing puzzle...")
 		puzzle_instance.queue_free()
 		puzzle_instance = null
-	
 	if canvas_layer:
 		canvas_layer.queue_free()
 		canvas_layer = null
-	
 	puzzle_active = false
 
 func _on_puzzle_completed(success: bool):
 	if success:
-		print("✅ Puzzle complete! Enemy defeated.")
 		is_defeated = true
+		print("🎯 SUCCESS! Emitting 'defeated' signal now...")
+		emit_signal("defeated")  # ✅ Notify door or other systems
+		print("✅ Signal emitted!")
 		_play_defeat_animation()
 	else:
 		print("❌ Puzzle failed.")
-	
-	puzzle_active = false
 	_close_puzzle()
 
 func _play_defeat_animation():
-	if animated_sprite:
-		# Play defeat animation
-		animated_sprite.play("death")  # Palitan ng animation name mo
+	if not has_played_defeat_animation and animated_sprite:
+		has_played_defeat_animation = true
 		
-		# Wait for animation to finish
-		await animated_sprite.animation_finished
-		
-		# Optional: Fade out effect
 		var tween = create_tween()
-		tween.tween_property(self, "modulate:a", 0.0, 0.5)
+		tween.set_parallel(true)
+		tween.tween_property(self, "scale", Vector2(1.1, 1.1), 0.3)
+		tween.tween_property(self, "modulate", Color.RED, 0.3)
 		await tween.finished
 		
-		# Remove enemy
-		queue_free()
-		print("💀 Enemy removed from scene")
-	else:
-		# Kung walang animation, direkta na lang i-remove
+		var tween2 = create_tween()
+		tween2.set_parallel(true)
+		tween2.tween_property(self, "position:y", position.y + 50, 1.0)
+		tween2.tween_property(self, "modulate:a", 0.0, 1.0)
+		tween2.tween_property(self, "scale", Vector2(0.5, 0.5), 1.0)
+		await tween2.finished
+		
+		print("💀 Malupiton defeated!")
 		queue_free()

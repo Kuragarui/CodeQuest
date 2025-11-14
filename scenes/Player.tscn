@@ -25,6 +25,7 @@ script/source = "extends CharacterBody2D
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var quest_manager = get_node_or_null(\"/root/Game/QuestManager\")
 
+
 signal fight_started
 signal fight_ended
 

@@ -1,13 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbyqm1tgv4elm"]
+[gd_scene load_steps=2 format=3 uid="uid://cnfw5s0yoafh7"]
 
-[ext_resource type="Texture2D" uid="uid://bofibbpdcavrs" path="res://assets/final bg.png" id="1_cottp"]
+[ext_resource type="Texture2D" uid="uid://bofibbpdcavrs" path="res://assets/final bg.png" id="1_gyjew"]
 
 [node name="Quests" type="Control"]
 layout_mode = 3
 anchor_right = 0.238
 anchor_bottom = 0.35200003
-offset_right = -0.17599487
-offset_bottom = -19.096024
+offset_right = -15.175995
+offset_bottom = -7.0960236
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -15,7 +15,7 @@ grow_vertical = 2
 layout_mode = 1
 offset_right = 266.0
 offset_bottom = 118.0
-texture = ExtResource("1_cottp")
+texture = ExtResource("1_gyjew")
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 metadata/_edit_use_anchors_ = true
@@ -40,23 +40,21 @@ anchor_right = 0.0037593986
 anchor_bottom = 0.94067794
 offset_right = 266.0
 offset_bottom = 118.0
-texture = ExtResource("1_cottp")
+texture = ExtResource("1_gyjew")
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Tasks" type="RichTextLabel" parent="PLAYERQUEST/Quest1"]
 layout_mode = 0
-offset_left = 22.0
-offset_top = 20.0
-offset_right = 229.0
-offset_bottom = 136.0
+offset_left = 30.0
+offset_top = 42.0
+offset_right = 232.0
+offset_bottom = 111.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
-text = "-Talk to Guide
--Talk to Master
--Defeat Lord Printar
--Defeat Number Warden
--Defeat Keeper of Decisions"
+text = "-Defeat Malupiton
+-Defeat Baklang Thomas
+-Defeat Wally Bayola"
 fit_content = true
