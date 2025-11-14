@@ -7,7 +7,7 @@ signal puzzle_completed(success: bool)
 @onready var code_blocks_container = $VBoxContainer/CodeBlocksContainer
 @onready var submit_button = $VBoxContainer/SubmitButton
 
-# === 🧩 3 Fill-in-the-Blank Printing Questions ===
+# === 🔀 IF-ELSE Questions ===
 var questions = [
 	{
 		"question": "What will this code print?\n\nx = 10\n\nif x > 5:\n    print('Big')\nelse:\n    print('Small')",
@@ -135,6 +135,15 @@ func _on_submit_pressed():
 		await get_tree().create_timer(0.4).timeout
 		load_question(current_index)
 	else:
-		print("❌ Question", current_index + 1, "wrong!")
-		puzzle_completed.emit(false)
-		queue_free()
+		print("❌ Question", current_index + 1, "wrong! Try again.")
+		
+		# Pula yung drop zone pag mali
+		drop_zone.modulate = Color(1, 0.3, 0.3)  # Red!
+		await get_tree().create_timer(0.5).timeout
+		
+		# Reset - try again
+		dropped_block.visible = true
+		dropped_block = null
+		drop_zone_label.text = "Drop code here"
+		drop_zone.modulate = Color.WHITE
+		submit_button.disabled = true
