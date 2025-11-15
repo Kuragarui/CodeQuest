@@ -137,6 +137,8 @@ func _on_submit_pressed():
 	else:
 		print("❌ Question", current_index + 1, "wrong! Try again.")
 		
+		PlayerStats.take_damage(1)
+		
 		# Pula yung drop zone pag mali
 		drop_zone.modulate = Color(1, 0.3, 0.3)  # Red!
 		await get_tree().create_timer(0.5).timeout

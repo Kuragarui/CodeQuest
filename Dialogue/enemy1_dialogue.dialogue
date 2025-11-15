@@ -26,12 +26,15 @@ set DialogueManager.get_meta("current_enemy").mark_defeated()
 
 ~ wrong1
 Lord Printar: Wrong. There is no echo() or say() in Python. Only print() gives voice to code.
-=> END
+set PlayerStats.take_damage(1)
+=> start
 
 ~ wrong2
 Lord Printar: Incorrect! The print() can display multiple items, even text and numbers together.
-=> END
+set PlayerStats.take_damage(1)
+=> q2
 
 ~ wrong3
 Lord Printar: Foolish! The * operator repeats strings in Python. Learn it well.
-=> END
+set PlayerStats.take_damage(1)
+=> q3

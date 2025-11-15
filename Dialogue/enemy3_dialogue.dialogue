@@ -29,14 +29,17 @@ do DialogueManager.get_meta("current_enemy").mark_defeated()
 ~ wrong1
 
 Keeper of Decisions: Wrong! Only 'if' can open the gate of decision.
-=> END
+set PlayerStats.take_damage(1)
+=> start
 
 ~ wrong2
 
 Keeper of Decisions: Incorrect! The condition x > 5 is true, so 'High' is printed.
-=> END
+set PlayerStats.take_damage(1)
+=> q2
 
 ~ wrong3
 
 Keeper of Decisions: No, 'else' catches what 'if' does not. 'elif' and 'unless' are not its equal.
-=> END
+set PlayerStats.take_damage(1)
+=> q3

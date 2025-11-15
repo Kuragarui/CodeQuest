@@ -29,7 +29,7 @@ script/source = "extends CharacterBody2D
 signal fight_started
 signal fight_ended
 
-var speed := 100
+var speed := 200
 var last_direction := 1
 
 # --- Interaction states ---
@@ -39,6 +39,7 @@ var talked_to_master := false
 # --- Battle state ---
 var fight_active := false
 var can_fight_enemy := false
+
 
 func _ready():
 	add_to_group(\"Player\")
@@ -50,6 +51,7 @@ func _ready():
 	print(\"Current scene:\", current_scene_path)
 	print(\"GlobalData.spawn_position:\", GlobalData.spawn_position)
 	print(\"Player initial position:\", position)
+	print(\"Player Health: \", PlayerStats.current_health)
 	
 	# Check if we have a saved spawn position
 	if GlobalData.spawn_position != Vector2.ZERO:
@@ -77,6 +79,10 @@ func _ready():
 		guide.connect(\"talked_to\", Callable(self, \"_on_talked_to_guide\"))
 	if master:
 		master.connect(\"talked_to\", Callable(self, \"_on_talked_to_master\"))
+		
+	
+
+
 
 func _physics_process(delta):
 	var direction := Vector2.ZERO
@@ -163,6 +169,7 @@ func _on_area_2d_2_body_entered(body: Node2D) -> void:
 
 func _on_area_2d_2_body_exited(body: Node2D) -> void:
 	pass # Replace with function body.
+	
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_axnmu"]

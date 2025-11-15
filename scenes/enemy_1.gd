@@ -38,8 +38,10 @@ func _on_Area2D_body_exited(body):
 		print(npc_name + ": Farewell, adventurer!")
 
 func show_dialog():
-	var dialogue_resource = load("res://Dialogue/enemy1_dialogue.dialogue")
+	await get_tree().process_frame
+	
 	DialogueManager.set_meta("current_enemy", self)
+	var dialogue_resource = load("res://Dialogue/enemy1_dialogue.dialogue")
 	current_balloon = DialogueManager.show_example_dialogue_balloon(dialogue_resource, "start")
 
 func mark_defeated():

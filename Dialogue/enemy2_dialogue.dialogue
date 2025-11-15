@@ -13,7 +13,8 @@ Number Warden: Correct! You understand arithmetic. Let's see if you can handle m
 ~ wrong_q1
 
 Number Warden: Wrong! In Python, 5 + 3 equals 8. No print() needed for calculation.
-=> END
+set PlayerStats.take_damage(1)
+=> start
 
 ~ q2
 
@@ -30,7 +31,8 @@ Number Warden: Impressive. You know integer division. One last challenge remains
 ~ wrong_q2
 
 Number Warden: Incorrect. '//' performs floor division, so 10 // 3 equals 3.
-=> END
+set PlayerStats.take_damage(1)
+=> q2
 
 ~ q3
 
@@ -48,4 +50,5 @@ do DialogueManager.get_meta("current_enemy").mark_defeated()
 ~ wrong_q3
 
 Number Warden: Wrong. The '%' operator gives the remainder — 7 % 4 equals 3.
-=> END
+set PlayerStats.take_damage(1)
+=> q3

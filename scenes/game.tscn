@@ -1,7 +1,8 @@
-[gd_scene load_steps=41 format=3 uid="uid://bkr8hxa1q63xy"]
+[gd_scene load_steps=42 format=3 uid="uid://bkr8hxa1q63xy"]
 
 [ext_resource type="Script" uid="uid://crf6h6x6r65ui" path="res://scenes/fade_control.gd" id="1_bhx41"]
 [ext_resource type="Texture2D" uid="uid://div7w2mmq7eh8" path="res://assets/character and tileset/Dungeon_Tileset.png" id="1_lqlv3"]
+[ext_resource type="PackedScene" uid="uid://db1tnyp3q8plw" path="res://scenes/health_bar.tscn" id="1_qnb83"]
 [ext_resource type="Script" uid="uid://jlfbsa32im8r" path="res://scenes/node_2d.gd" id="2_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://dhbm5dkq7d8oa" path="res://scenes/Player.tscn" id="2_rk5pu"]
 [ext_resource type="PackedScene" uid="uid://c3ycaa4cb5qpj" path="res://scenes/guide.tscn" id="3_lnu2h"]
@@ -542,6 +543,8 @@ position = Vector2(-38.99997, 304)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(5.5, 5.5)
+
+[node name="healthBar" parent="Player" instance=ExtResource("1_qnb83")]
 
 [node name="Guide" parent="." instance=ExtResource("3_lnu2h")]
 position = Vector2(427, 280)

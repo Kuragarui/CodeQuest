@@ -21,6 +21,7 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 QuestManager="*res://scenes/quest_manager.gd"
 GlobalData="*res://scripts/global_data.gd"
 Quest2Manager="*res://scenes/quest2_manager.gd"
+PlayerStats="*res://scripts/player_stats.gd"
 
 [editor_plugins]
 
