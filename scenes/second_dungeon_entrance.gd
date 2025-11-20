@@ -12,7 +12,10 @@ func _ready() -> void:
 	print("Fade found:", fade != null)
 
 func _on_body_entered(body: Node2D) -> void:
-	if not body.is_in_group("Player") or is_transitioning:
+	# Check by name OR group
+	var is_player = body.name == "Player" or body.is_in_group("player")
+	
+	if not is_player or is_transitioning:
 		return
 	
 	print("✓ Player entering dungeon 2...")
@@ -20,7 +23,6 @@ func _on_body_entered(body: Node2D) -> void:
 	_enter_second_dungeon()
 
 func _enter_second_dungeon() -> void:
-	# Clear spawn position - player will spawn at PlayerSpawnPoint
 	GlobalData.spawn_position = Vector2.ZERO
 	
 	print("Entering dungeon 2 - will spawn at PlayerSpawnPoint")

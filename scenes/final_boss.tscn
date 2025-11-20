@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://sg08747pqog6"]
+
+[ext_resource type="Texture2D" uid="uid://cvagva60bnpfh" path="res://assets/Character_animation/GRP_CHARAC/final boss/frame 1.png" id="1_gu5vo"]
+[ext_resource type="Texture2D" uid="uid://d0vecs1gn2rka" path="res://assets/Character_animation/GRP_CHARAC/final boss/frame 2.png" id="2_ud6ed"]
+[ext_resource type="Texture2D" uid="uid://bjkl5r13kfxeg" path="res://assets/Character_animation/GRP_CHARAC/final boss/frame 3.png" id="3_1sdr7"]
+[ext_resource type="Texture2D" uid="uid://2chnnmg12c1q" path="res://assets/Character_animation/GRP_CHARAC/final boss/frame 4.png" id="4_4qsog"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpvre"]
+atlas = ExtResource("1_gu5vo")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uoj5"]
+atlas = ExtResource("2_ud6ed")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkym2"]
+atlas = ExtResource("3_1sdr7")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8obkr"]
+atlas = ExtResource("4_4qsog")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k88u8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpvre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uoj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkym2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8obkr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0aib"]
+size = Vector2(186.5, 147.75)
+
+[node name="FinalBoss" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_k88u8")
+autoplay = "default"
+frame_progress = 0.81667507
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -10)
+shape = SubResource("RectangleShape2D_e0aib")
