@@ -11,7 +11,7 @@ var questions = [
 	# Printing (2 questions)
 	{
 		"question": "Given:\nname = 'Patrick'\nWhat will print?\nprint(name)",
-	"answer": "patrick",
+	"answer": "Patrick",
 	"topic": "Printing"
 	},
 	{
@@ -114,8 +114,8 @@ func _on_text_submitted(_text: String):
 	_check_answer()
 
 func _check_answer():
-	var player_answer = answer_input.text.strip_edges().to_lower()
-	var correct_answer = current_question["answer"].to_lower()
+	var player_answer = answer_input.text.strip_edges()
+	var correct_answer = current_question["answer"]
 	
 	if player_answer == correct_answer:
 		print("✅ Correct!")
@@ -132,7 +132,7 @@ func _check_answer():
 		feedback_label.modulate = Color.RED
 		
 		# 👇 DITO MAG-SETUP NG HEALTH SYSTEM ANG TEAMMATE MO!
-		# PlayerStats.take_damage(1)
+		PlayerStats.take_damage(1)
 		# HINDI NAG-CLOSE YUNG PUZZLE - PWEDE PA MAG-TRY ULIT!
 		
 		# Shake effect (optional)

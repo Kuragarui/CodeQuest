@@ -520,16 +520,6 @@ offset_bottom = 525.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 173.0
-offset_top = 433.0
-offset_right = 302.0
-offset_bottom = 493.0
-
-[node name="touchControl" parent="Control" instance=ExtResource("17_rysoc")]
-
 [node name="TileMap" type="TileMap" parent="."]
 z_as_relative = false
 position = Vector2(-10, 0)
@@ -545,10 +535,20 @@ layer_0/tile_data = PackedInt32Array(1376279, 65536, 7, 1376278, 196608, 7, 1376
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("2_rk5pu")]
 position = Vector2(-38.99997, 304)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(5.5, 5.5)
+[node name="Control" type="Control" parent="Player"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 302.85712
+offset_top = 184.2857
+offset_right = 431.85712
+offset_bottom = 244.2857
+
+[node name="touchControl" parent="Player/Control" instance=ExtResource("17_rysoc")]
 
 [node name="healthBar" parent="Player" instance=ExtResource("1_qnb83")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(5.5, 5.5)
 
 [node name="Guide" parent="." instance=ExtResource("3_lnu2h")]
 position = Vector2(427, 280)
