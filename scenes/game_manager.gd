@@ -3,10 +3,13 @@ extends Node
 @onready var enemy3 = get_node_or_null("Enemy3")
 var game_completed = false
 
+
 func _ready():
 	print("GameManager parent: ", get_parent().name)
 	print("Looking for Enemy3...")
-
+	
+	PlayerStats.current_dungeon = 1
+	
 	if not enemy3:
 		print("⚠️ Enemy3 not found with current path!")
 		var parent = get_parent()

@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn33nkt3coemy"]
+
+[ext_resource type="Texture2D" uid="uid://bofibbpdcavrs" path="res://assets/final bg.png" id="1_7k7an"]
+[ext_resource type="Script" uid="uid://b7eqdf7eoaawb" path="res://quest3/quests_3.gd" id="1_oed44"]
+
+[node name="Quests" type="Control"]
+layout_mode = 3
+anchor_right = 0.238
+anchor_bottom = 0.35200003
+offset_right = -15.175995
+offset_bottom = -7.0960236
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oed44")
+
+[node name="PLAYERQUEST" type="NinePatchRect" parent="."]
+layout_mode = 1
+offset_right = 266.0
+offset_bottom = 118.0
+texture = ExtResource("1_7k7an")
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Name" type="RichTextLabel" parent="PLAYERQUEST"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 52.0
+offset_right = 193.0
+offset_bottom = 80.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+text = "Player Quest"
+fit_content = true
+
+[node name="Quest1" type="NinePatchRect" parent="PLAYERQUEST"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0037593986
+anchor_top = 0.7966102
+anchor_right = 0.0037593986
+anchor_bottom = 0.94067794
+offset_right = 266.0
+offset_bottom = 118.0
+texture = ExtResource("1_7k7an")
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Tasks" type="RichTextLabel" parent="PLAYERQUEST/Quest1"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 41.0
+offset_right = 235.0
+offset_bottom = 110.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "-Defeat The TypeError Titan"
+fit_content = true

@@ -19,27 +19,47 @@ var quest_order = [
 ]
 
 # 🧭 Reference to the Quest UI controller
-@onready var quest_ui: Node = get_node_or_null("/root/Game/CanvasLayer/Quests")
+var quest_ui: Node = null
 
 # 🧍‍♂️ References to key NPCs / nodes
 var guide_npc: Node2D
 var master_npc: Node2D
-var enemy1_npc: Node2D
+var enemy1_npc: Node2D  # Lord Printar
+var enemy2_npc: Node2D  # Number Warden
+var enemy3_npc: Node2D  # Keeper of Decisions
 var player_ref: Node2D
 
 # ⚙️ Scene-related state tracking
 var scene_state = {
 	"guide_active": true,
 	"master_unlocked": false,
-	"enemy_defeated": false,
+	"enemy1_defeated": false,
+	"enemy2_defeated": false,
+	"enemy3_defeated": false,
 	"final_scene": false
 }
 
+var _initialized := false
+
 func _ready() -> void:
-	print("✅ QuestManager loaded successfully")
+	print("✅ QuestManager autoload ready (waiting for game scene)")
+
+# 🎮 Call this from game.tscn when it's ready
+func initialize_game_scene() -> void:
+	if _initialized:
+		print("⚠️ QuestManager already initialized, skipping")
+		return
+	
+	print("🎮 Initializing QuestManager for game scene...")
+	await get_tree().process_frame
+	await get_tree().process_frame  # Double wait for safety
+	
 	_reset_quests_if_all_done()
 	_cache_npc_references()
 	_show_current_quest()
+	
+	_initialized = true
+	print("✅ QuestManager initialization complete!")
 
 # 🔁 Reset quests if previously all completed
 func _reset_quests_if_all_done() -> void:
@@ -55,18 +75,39 @@ func _reset_quests_if_all_done() -> void:
 
 # 🧩 Cache important NPC nodes
 func _cache_npc_references() -> void:
-	guide_npc = get_node_or_null("/root/Game/Guide")
-	master_npc = get_node_or_null("/root/Game/Master")
-	enemy1_npc = get_node_or_null("/root/Game/Enemy1")
-	player_ref = get_node_or_null("/root/Game/Player")
+	print("🔍 Searching for game nodes...")
+	
+	# Find Quest UI - try multiple methods
+	quest_ui = get_tree().root.find_child("Quests", true, false)
+	if quest_ui:
+		print("✅ Quest UI found:", quest_ui.get_path())
+	else:
+		push_error("❌ Quest UI NOT FOUND!")
+	
+	# Find NPCs
+	guide_npc = get_tree().root.find_child("Guide", true, false)
+	master_npc = get_tree().root.find_child("Master", true, false)
+	enemy1_npc = get_tree().root.find_child("Enemy1", true, false)
+	enemy2_npc = get_tree().root.find_child("Enemy2", true, false)
+	enemy3_npc = get_tree().root.find_child("Enemy3", true, false)
+	player_ref = get_tree().root.find_child("Player", true, false)
 
-	if guide_npc: print("✅ Guide cached")
-	if master_npc: print("✅ Master cached")
-	if enemy1_npc: print("✅ Enemy1 cached")
-	if player_ref: print("✅ Player cached")
+	# Debug output
+	print("📦 Guide:", guide_npc)
+	print("📦 Master:", master_npc)
+	print("📦 Enemy1:", enemy1_npc)
+	print("📦 Enemy2:", enemy2_npc)
+	print("📦 Enemy3:", enemy3_npc)
+	print("📦 Player:", player_ref)
 
 # 🏁 Complete a quest and trigger updates
 func complete_quest(quest_name: String) -> void:
+	print("🔍 complete_quest called:", quest_name)
+	
+	if not _initialized:
+		push_warning("⚠️ QuestManager not initialized yet!")
+		return
+	
 	if quests.has(quest_name) and not quests[quest_name]:
 		quests[quest_name] = true
 		print("🏁 Quest completed:", quest_name)
@@ -91,13 +132,19 @@ func _apply_scene_changes(quest_name: String) -> void:
 
 		"defeat_lord_printar":
 			print("🎬 Scene change: Lord Printar defeated")
-			scene_state["enemy_defeated"] = true
-			scene_state["final_scene"] = false
-			if enemy1_npc: _on_enemy_defeated()
+			scene_state["enemy1_defeated"] = true
+			if enemy1_npc: _on_enemy_defeated(enemy1_npc)
 
 		"defeat_number_warden":
 			print("🎬 Scene change: Number Warden defeated")
+			scene_state["enemy2_defeated"] = true
+			if enemy2_npc: _on_enemy_defeated(enemy2_npc)
+
+		"defeat_keeper_of_decisions":
+			print("🎬 Scene change: Keeper of Decisions defeated")
+			scene_state["enemy3_defeated"] = true
 			scene_state["final_scene"] = true
+			if enemy3_npc: _on_enemy_defeated(enemy3_npc)
 
 func _on_guide_dialogue_complete() -> void:
 	print("📍 Guide interaction finished.")
@@ -105,10 +152,10 @@ func _on_guide_dialogue_complete() -> void:
 func _on_master_dialogue_complete() -> void:
 	print("📍 Master interaction finished.")
 
-func _on_enemy_defeated() -> void:
-	if enemy1_npc:
+func _on_enemy_defeated(enemy: Node2D) -> void:
+	if enemy:
 		var tween = create_tween()
-		tween.tween_property(enemy1_npc, "scale", Vector2(0.8, 0.8), 0.5)
+		tween.tween_property(enemy, "scale", Vector2(0.8, 0.8), 0.5)
 		print("⚡ Enemy shrinking after defeat...")
 
 # 🧭 Determine which phase to show
@@ -122,10 +169,15 @@ func _show_current_quest() -> void:
 	print("📜 Quests =", quests)
 	print("🧩 next_quest_index =", next_quest_index)
 
-	if quest_ui and quest_ui.has_method("update_quests"):
+	if quest_ui == null:
+		push_warning("⚠️ Quest UI is null!")
+		return
+	
+	if quest_ui.has_method("update_quests"):
+		print("✅ Calling update_quests()")
 		quest_ui.update_quests(quests, quest_order, next_quest_index)
 	else:
-		push_warning("⚠️ Quest UI not found or missing update_quests()")
+		push_error("❌ Quest UI missing update_quests() method!")
 
 # 🔍 Check completion status
 func is_quest_complete(quest_name: String) -> bool:

@@ -18,10 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-QuestManager="*res://scenes/quest_manager.gd"
+QuestManager="*res://quest1/quest_manager.gd"
 GlobalData="*res://scripts/global_data.gd"
-Quest2Manager="*res://scenes/quest2_manager.gd"
+Quest2Manager="*res://quest2/quest2_manager.gd"
 PlayerStats="*res://scripts/player_stats.gd"
+Quest3Manager="*res://quest3/quest3_manager.gd"
 
 [editor_plugins]
 

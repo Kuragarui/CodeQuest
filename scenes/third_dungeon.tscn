@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://dfvo8ojow0knj"]
+[gd_scene load_steps=23 format=3 uid="uid://dfvo8ojow0knj"]
 
 [ext_resource type="Script" uid="uid://crf6h6x6r65ui" path="res://scenes/fade_control.gd" id="1_o78ta"]
+[ext_resource type="PackedScene" uid="uid://b3lwb7crhsges" path="res://scenes/retry3.tscn" id="1_v4mwb"]
 [ext_resource type="PackedScene" uid="uid://dhbm5dkq7d8oa" path="res://scenes/Player.tscn" id="2_0qe5s"]
 [ext_resource type="Texture2D" uid="uid://blad7mfdtwweh" path="res://assets/character and tileset/Dungeon_Tileset_recolored_v2.png" id="3_d7k5n"]
 [ext_resource type="PackedScene" uid="uid://db1tnyp3q8plw" path="res://scenes/health_bar.tscn" id="3_fdm70"]
@@ -9,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c5fog6ykwm74q" path="res://control/touch_control.tscn" id="4_wyhtk"]
 [ext_resource type="Script" uid="uid://cjnp5odvs816i" path="res://third_dungeon_exit.gd" id="5_wyhtk"]
 [ext_resource type="Script" uid="uid://ctma7ldd2g1jh" path="res://scenes/final_boss.gd" id="6_d7k5n"]
+[ext_resource type="PackedScene" uid="uid://bn33nkt3coemy" path="res://quest3/quests3.tscn" id="11_3mskm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3arlw"]
 texture = ExtResource("3_d7k5n")
@@ -736,6 +738,8 @@ size = Vector2(64, 33)
 
 [node name="ThirdDungeon" type="Node2D"]
 
+[node name="gameOver3" parent="." instance=ExtResource("1_v4mwb")]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="FadeControl" type="ColorRect" parent="CanvasLayer"]
@@ -801,5 +805,15 @@ script = ExtResource("5_wyhtk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ThirdDungeonExit"]
 position = Vector2(24, -3)
 shape = SubResource("RectangleShape2D_ahnk5")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Quests" parent="CanvasLayer2" instance=ExtResource("11_3mskm")]
+anchor_right = 0.20600002
+anchor_bottom = 0.28100002
+offset_left = 7.0
+offset_top = 6.0
+offset_right = -64.31201
+offset_bottom = -37.088013
 
 [connection signal="body_entered" from="FinalBoss/Area2D2" to="Player" method="_on_area_2d_2_body_entered"]

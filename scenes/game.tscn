@@ -1,11 +1,13 @@
-[gd_scene load_steps=42 format=3 uid="uid://bkr8hxa1q63xy"]
+[gd_scene load_steps=43 format=3 uid="uid://bkr8hxa1q63xy"]
 
 [ext_resource type="Script" uid="uid://crf6h6x6r65ui" path="res://scenes/fade_control.gd" id="1_bhx41"]
 [ext_resource type="Texture2D" uid="uid://div7w2mmq7eh8" path="res://assets/character and tileset/Dungeon_Tileset.png" id="1_lqlv3"]
 [ext_resource type="PackedScene" uid="uid://db1tnyp3q8plw" path="res://scenes/health_bar.tscn" id="1_qnb83"]
+[ext_resource type="Script" uid="uid://cu4stqv0j7bc4" path="res://scenes/game.gd" id="1_sww3w"]
 [ext_resource type="Script" uid="uid://jlfbsa32im8r" path="res://scenes/node_2d.gd" id="2_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://dhbm5dkq7d8oa" path="res://scenes/Player.tscn" id="2_rk5pu"]
 [ext_resource type="PackedScene" uid="uid://c3ycaa4cb5qpj" path="res://scenes/guide.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://b08wonwnylhsq" path="res://scenes/retry.tscn" id="3_sww3w"]
 [ext_resource type="Texture2D" uid="uid://ccdperehbtych" path="res://assets/character and tileset/Dungeon_Tileset_recolored.png" id="4_e1j6l"]
 [ext_resource type="PackedScene" uid="uid://do77oab6nhiyy" path="res://scenes/Master.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://djny6600ym5kr" path="res://scenes/enemy_1.tscn" id="5_iywne"]
@@ -20,10 +22,9 @@
 [ext_resource type="Script" uid="uid://ev4pnw58v16b" path="res://scenes/e_3_door_2.gd" id="16_ssvqc"]
 [ext_resource type="Script" uid="uid://uq7w51ewwbd2" path="res://scenes/e_3_door_3.gd" id="17_264po"]
 [ext_resource type="PackedScene" uid="uid://c5fog6ykwm74q" path="res://control/touch_control.tscn" id="17_rysoc"]
-[ext_resource type="PackedScene" uid="uid://dbyqm1tgv4elm" path="res://scenes/quests.tscn" id="18_264po"]
-[ext_resource type="Script" uid="uid://dsainvk747ty8" path="res://scenes/game_manager.gd" id="18_ssvqc"]
-[ext_resource type="Script" uid="uid://d1mmqfi2sbuq" path="res://scenes/quests.gd" id="19_1kice"]
-[ext_resource type="Script" uid="uid://drll4vkuj5uvq" path="res://scenes/quest_manager.gd" id="19_264po"]
+[ext_resource type="PackedScene" uid="uid://dbyqm1tgv4elm" path="res://quest1/quests.tscn" id="18_264po"]
+[ext_resource type="Script" uid="uid://d1mmqfi2sbuq" path="res://quest1/quests.gd" id="19_1kice"]
+[ext_resource type="Script" uid="uid://drll4vkuj5uvq" path="res://quest1/quest_manager.gd" id="19_264po"]
 [ext_resource type="PackedScene" uid="uid://lo576ngbl7vq" path="res://scenes/main_menu.tscn" id="21_5newe"]
 [ext_resource type="Script" uid="uid://co7uvncc4hkmb" path="res://scenes/second_dungeon_entrance.gd" id="23_bt5mj"]
 [ext_resource type="Script" uid="uid://bvyf0o4kjndxc" path="res://scenes/door_for_d_2.gd" id="24_pl11u"]
@@ -487,6 +488,22 @@ size = Vector2(209, 34)
 
 [node name="Game" type="Node2D"]
 position = Vector2(430, -91)
+script = ExtResource("1_sww3w")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Quests" parent="CanvasLayer" instance=ExtResource("18_264po")]
+anchor_right = 0.287
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -69.62399
+offset_bottom = -52.096024
+script = ExtResource("19_1kice")
+
+[node name="gameOver" parent="." instance=ExtResource("3_sww3w")]
+
+[node name="QuestManager" type="Node" parent="."]
+script = ExtResource("19_264po")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
@@ -671,22 +688,6 @@ position = Vector2(-3, -12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="doorForD2/StaticBody2D"]
 shape = SubResource("RectangleShape2D_bt5mj")
-
-[node name="game_manager" type="Node" parent="."]
-script = ExtResource("18_ssvqc")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Quests" parent="CanvasLayer" instance=ExtResource("18_264po")]
-anchor_right = 0.287
-offset_left = 6.0
-offset_top = 6.0
-offset_right = -69.62399
-offset_bottom = -52.096024
-script = ExtResource("19_1kice")
-
-[node name="QuestManager" type="Node" parent="."]
-script = ExtResource("19_264po")
 
 [node name="SecondDungeonEntrance" type="Area2D" parent="."]
 position = Vector2(126, 594)

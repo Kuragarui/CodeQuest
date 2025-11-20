@@ -10,6 +10,8 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	print("=== Second dungeon entrance ready ===")
 	print("Fade found:", fade != null)
+	
+	PlayerStats.current_dungeon = 2
 
 func _on_body_entered(body: Node2D) -> void:
 	# Check by name OR group

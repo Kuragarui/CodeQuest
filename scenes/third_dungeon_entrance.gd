@@ -6,10 +6,13 @@ var fade: Node
 
 var is_transitioning := false
 
+
 func _ready() -> void:
 	fade = get_node_or_null("/root/SecondDungeon/CanvasLayer2/FadeControl")
 	if not fade:
 		fade = get_node_or_null("../../CanvasLayer2/FadeControl")
+		
+		PlayerStats.current_dungeon = 3
 	
 	body_entered.connect(_on_body_entered)
 	print("=== Third dungeon entrance ready ===")
@@ -39,3 +42,5 @@ func _enter_third_dungeon() -> void:
 	else:
 		print("⚡ No fade found, instant transition")
 		get_tree().change_scene_to_file(THIRD_DUNGEON_SCENE)
+		
+		
