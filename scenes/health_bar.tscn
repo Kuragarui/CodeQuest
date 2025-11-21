@@ -22,10 +22,13 @@ animations = [{
 script = ExtResource("1_y3kqx")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 847.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -302.0
 offset_top = 38.0
-offset_right = 1149.0
 offset_bottom = 78.0
+grow_horizontal = 0
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(47.015, 0)

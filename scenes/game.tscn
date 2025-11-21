@@ -559,7 +559,12 @@ position = Vector2(-38.99997, 304)
 offset_top = -2.0
 offset_bottom = -2.0
 
-[node name="Controls" type="Control" parent="Player"]
+[node name="healthBar" parent="Player" instance=ExtResource("1_qnb83")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(5.5, 5.5)
+
+[node name="Control" type="Control" parent="Player"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 302.85712
@@ -567,12 +572,7 @@ offset_top = 184.2857
 offset_right = 431.85712
 offset_bottom = 244.2857
 
-[node name="touchControl" parent="Player/Controls" instance=ExtResource("17_rysoc")]
-
-[node name="healthBar" parent="Player" instance=ExtResource("1_qnb83")]
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(5.5, 5.5)
+[node name="touchControl" parent="Player/Control" instance=ExtResource("17_rysoc")]
 
 [node name="Guide" parent="." instance=ExtResource("3_lnu2h")]
 position = Vector2(427, 280)
