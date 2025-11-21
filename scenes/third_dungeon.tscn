@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dfvo8ojow0knj"]
+[gd_scene load_steps=24 format=3 uid="uid://dfvo8ojow0knj"]
 
 [ext_resource type="Script" uid="uid://crf6h6x6r65ui" path="res://scenes/fade_control.gd" id="1_o78ta"]
 [ext_resource type="PackedScene" uid="uid://b3lwb7crhsges" path="res://scenes/retry3.tscn" id="1_v4mwb"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c5fog6ykwm74q" path="res://control/touch_control.tscn" id="4_wyhtk"]
 [ext_resource type="Script" uid="uid://cjnp5odvs816i" path="res://third_dungeon_exit.gd" id="5_wyhtk"]
 [ext_resource type="Script" uid="uid://ctma7ldd2g1jh" path="res://scenes/final_boss.gd" id="6_d7k5n"]
+[ext_resource type="PackedScene" uid="uid://birkhmnyf6an4" path="res://scenes/pause_menu.tscn" id="6_gi18x"]
 [ext_resource type="PackedScene" uid="uid://bn33nkt3coemy" path="res://quest3/quests3.tscn" id="11_3mskm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3arlw"]
@@ -770,6 +771,12 @@ offset_right = 431.85712
 offset_bottom = 244.2857
 
 [node name="touchControl" parent="Player/Control" instance=ExtResource("4_wyhtk")]
+
+[node name="PauseCL" type="CanvasLayer" parent="Player"]
+
+[node name="PauseMenu" parent="Player/PauseCL" instance=ExtResource("6_gi18x")]
+offset_top = -2.0
+offset_bottom = -2.0
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ahnk5")

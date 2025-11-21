@@ -4,7 +4,7 @@ func _ready():
 	pass
 
 func _on_start_game_pressed():
-	print("Start button pressed!")  # Just to confirm it runs
+	print("Start button pressed!")
 	get_tree().change_scene_to_file("res://Opening_Cutscene.tscn")
 
 func _on_exit_pressed():

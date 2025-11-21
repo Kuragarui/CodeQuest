@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bkr8hxa1q63xy"]
+[gd_scene load_steps=44 format=3 uid="uid://bkr8hxa1q63xy"]
 
 [ext_resource type="Script" uid="uid://crf6h6x6r65ui" path="res://scenes/fade_control.gd" id="1_bhx41"]
 [ext_resource type="Texture2D" uid="uid://div7w2mmq7eh8" path="res://assets/character and tileset/Dungeon_Tileset.png" id="1_lqlv3"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://c3rodes2l3gxb" path="res://addons/dialogue_manager/dialogue_manager.gd" id="8_gee14"]
 [ext_resource type="Script" uid="uid://bbhyljumhcynm" path="res://scenes/guide_door_1.gd" id="11_37s47"]
 [ext_resource type="Script" uid="uid://cl50u6ulkh6ce" path="res://scenes/node_2d_2.gd" id="12_dinhu"]
+[ext_resource type="PackedScene" uid="uid://birkhmnyf6an4" path="res://scenes/pause_menu.tscn" id="13_suyxu"]
 [ext_resource type="Script" uid="uid://b4laijpq2u8aj" path="res://scenes/e_2_door.gd" id="13_trtic"]
 [ext_resource type="Script" uid="uid://dung3xa21gjkr" path="res://scenes/e_2_door_2.gd" id="14_ir15t"]
 [ext_resource type="Script" uid="uid://bynucxs1naf3w" path="res://scenes/e_3_door_1.gd" id="15_rysoc"]
@@ -552,7 +553,13 @@ layer_0/tile_data = PackedInt32Array(1376279, 65536, 7, 1376278, 196608, 7, 1376
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("2_rk5pu")]
 position = Vector2(-38.99997, 304)
 
-[node name="Control" type="Control" parent="Player"]
+[node name="PauseCL" type="CanvasLayer" parent="Player"]
+
+[node name="PauseMenu" parent="Player/PauseCL" instance=ExtResource("13_suyxu")]
+offset_top = -2.0
+offset_bottom = -2.0
+
+[node name="Controls" type="Control" parent="Player"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 302.85712
@@ -560,7 +567,7 @@ offset_top = 184.2857
 offset_right = 431.85712
 offset_bottom = 244.2857
 
-[node name="touchControl" parent="Player/Control" instance=ExtResource("17_rysoc")]
+[node name="touchControl" parent="Player/Controls" instance=ExtResource("17_rysoc")]
 
 [node name="healthBar" parent="Player" instance=ExtResource("1_qnb83")]
 

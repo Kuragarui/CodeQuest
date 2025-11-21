@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://y60yw2flbxio"]
+[gd_scene load_steps=42 format=4 uid="uid://y60yw2flbxio"]
 
 [ext_resource type="Script" uid="uid://dp3dp336d76r4" path="res://quest2/quest2_manager.gd" id="1_3o4s3"]
 [ext_resource type="PackedScene" uid="uid://dhbm5dkq7d8oa" path="res://scenes/Player.tscn" id="1_4rpy5"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b56wrk4f0n0bg" path="res://scenes/enemy_3_d_2.tscn" id="7_ovgky"]
 [ext_resource type="PackedScene" uid="uid://buv5l2h1ewits" path="res://scenes/enemy_2_d_2.tscn" id="8_2i4m5"]
 [ext_resource type="PackedScene" uid="uid://c5fog6ykwm74q" path="res://control/touch_control.tscn" id="8_nkm3f"]
+[ext_resource type="PackedScene" uid="uid://birkhmnyf6an4" path="res://scenes/pause_menu.tscn" id="9_g1hnm"]
 [ext_resource type="Script" uid="uid://dg7718n3jvff" path="res://scenes/enemy_2_d_2.gd" id="10_634w0"]
 [ext_resource type="Script" uid="uid://cs44ej741y7mx" path="res://scenes/door_2d_2.gd" id="11_6mno3"]
 [ext_resource type="Script" uid="uid://cg2cy74p30pla" path="res://scenes/door_1d_2.gd" id="11_634w0"]
@@ -999,6 +1000,12 @@ offset_right = 431.85712
 offset_bottom = 244.2857
 
 [node name="touchControl" parent="Player/Control" instance=ExtResource("8_nkm3f")]
+
+[node name="PauseCL" type="CanvasLayer" parent="Player"]
+
+[node name="PauseMenu" parent="Player/PauseCL" instance=ExtResource("9_g1hnm")]
+offset_top = -2.0
+offset_bottom = -2.0
 
 [node name="ThirdDungeonEntrance" type="Area2D" parent="."]
 position = Vector2(-55, 240)
