@@ -57,12 +57,12 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Resume"
 
-[node name="MainMenu" type="Button" parent="PausePanelContainer/VBoxContainer"]
+[node name="retry" type="Button" parent="PausePanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Back to Main Menu"
+text = "Retry"
 
 [connection signal="pressed" from="CanvasLayer/PauseBtn" to="." method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="PausePanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="PausePanelContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="PausePanelContainer/VBoxContainer/retry" to="." method="_on_retry_pressed"]

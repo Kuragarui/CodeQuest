@@ -46,13 +46,15 @@ func _ready() -> void:
 
 # 🎮 Call this from game.tscn when it's ready
 func initialize_game_scene() -> void:
-	if _initialized:
-		print("⚠️ QuestManager already initialized, skipping")
-		return
+	# REMOVED: the early return that prevented re-initialization
+	# Now we always reinitialize when the game scene loads
 	
 	print("🎮 Initializing QuestManager for game scene...")
 	await get_tree().process_frame
 	await get_tree().process_frame  # Double wait for safety
+	
+	# Clear stale references first
+	_clear_references()
 	
 	_reset_quests_if_all_done()
 	_cache_npc_references()
@@ -60,6 +62,38 @@ func initialize_game_scene() -> void:
 	
 	_initialized = true
 	print("✅ QuestManager initialization complete!")
+
+# 🧹 Clear all node references (important for retry/reload)
+func _clear_references() -> void:
+	quest_ui = null
+	guide_npc = null
+	master_npc = null
+	enemy1_npc = null
+	enemy2_npc = null
+	enemy3_npc = null
+	player_ref = null
+	print("🧹 Cleared stale node references")
+
+# 🔄 Call this when player dies/retries to fully reset
+func reset_for_retry() -> void:
+	print("🔄 Resetting QuestManager for retry...")
+	_initialized = false
+	_clear_references()
+	
+	# Reset all quests to incomplete
+	for key in quests.keys():
+		quests[key] = false
+	
+	# Reset scene state
+	scene_state = {
+		"guide_active": true,
+		"master_unlocked": false,
+		"enemy1_defeated": false,
+		"enemy2_defeated": false,
+		"enemy3_defeated": false,
+		"final_scene": false
+	}
+	print("✅ QuestManager reset complete")
 
 # 🔁 Reset quests if previously all completed
 func _reset_quests_if_all_done() -> void:
@@ -123,28 +157,28 @@ func _apply_scene_changes(quest_name: String) -> void:
 			print("🎬 Scene change: Guide dialogue complete")
 			scene_state["guide_active"] = false
 			scene_state["master_unlocked"] = true
-			if guide_npc: _on_guide_dialogue_complete()
+			if is_instance_valid(guide_npc): _on_guide_dialogue_complete()
 
 		"talk_to_master":
 			print("🎬 Scene change: Master dialogue complete")
 			scene_state["master_unlocked"] = false
-			if master_npc: _on_master_dialogue_complete()
+			if is_instance_valid(master_npc): _on_master_dialogue_complete()
 
 		"defeat_lord_printar":
 			print("🎬 Scene change: Lord Printar defeated")
 			scene_state["enemy1_defeated"] = true
-			if enemy1_npc: _on_enemy_defeated(enemy1_npc)
+			if is_instance_valid(enemy1_npc): _on_enemy_defeated(enemy1_npc)
 
 		"defeat_number_warden":
 			print("🎬 Scene change: Number Warden defeated")
 			scene_state["enemy2_defeated"] = true
-			if enemy2_npc: _on_enemy_defeated(enemy2_npc)
+			if is_instance_valid(enemy2_npc): _on_enemy_defeated(enemy2_npc)
 
 		"defeat_keeper_of_decisions":
 			print("🎬 Scene change: Keeper of Decisions defeated")
 			scene_state["enemy3_defeated"] = true
 			scene_state["final_scene"] = true
-			if enemy3_npc: _on_enemy_defeated(enemy3_npc)
+			if is_instance_valid(enemy3_npc): _on_enemy_defeated(enemy3_npc)
 
 func _on_guide_dialogue_complete() -> void:
 	print("📍 Guide interaction finished.")
@@ -153,7 +187,7 @@ func _on_master_dialogue_complete() -> void:
 	print("📍 Master interaction finished.")
 
 func _on_enemy_defeated(enemy: Node2D) -> void:
-	if enemy:
+	if is_instance_valid(enemy):
 		var tween = create_tween()
 		tween.tween_property(enemy, "scale", Vector2(0.8, 0.8), 0.5)
 		print("⚡ Enemy shrinking after defeat...")
@@ -169,8 +203,8 @@ func _show_current_quest() -> void:
 	print("📜 Quests =", quests)
 	print("🧩 next_quest_index =", next_quest_index)
 
-	if quest_ui == null:
-		push_warning("⚠️ Quest UI is null!")
+	if quest_ui == null or not is_instance_valid(quest_ui):
+		push_warning("⚠️ Quest UI is null or invalid!")
 		return
 	
 	if quest_ui.has_method("update_quests"):

@@ -6,16 +6,26 @@
 [sub_resource type="GDScript" id="GDScript_ekxnf"]
 script/source = "extends Control
 
+@onready var black_screen: ColorRect = $Blackscreen
 
-
-
-
-func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file(\"res://Opening_Cutscene.tscn\")
-
-
-func _on_exit_pressed() -> void:
-	get_tree().quit()
+func _ready() -> void:
+	black_screen.modulate.a = 0.0
+	
+	# Show credits for 8 seconds
+	await get_tree().create_timer(8.0).timeout
+	
+	# Slow fade to black over 4 seconds with smooth easing
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.tween_property(black_screen, \"modulate:a\", 1.0, 4.0)
+	await tween.finished
+	
+	# Small pause on black before changing scene
+	await get_tree().create_timer(1.0).timeout
+	
+	# Go to main menu
+	get_tree().change_scene_to_file(\"res://ending_scene/credits.tscn\")
 "
 
 [sub_resource type="Theme" id="Theme_ekxnf"]
@@ -71,31 +81,85 @@ vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
-offset_left = -171.0
+offset_left = -199.0
 offset_top = -180.0
-offset_right = 150.0
+offset_right = 229.0
 offset_bottom = -89.0
 theme_override_fonts/font = ExtResource("2_2x1jc")
 theme_override_font_sizes/font_size = 90
-text = "Members"
+text = "CODE QUEST"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -370.0
+layout_mode = 0
+offset_left = -373.0
 offset_top = -71.0
-offset_right = 503.0
-offset_bottom = 292.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_right = 1.0
+offset_bottom = 45.0
 theme_override_fonts/normal_font = ExtResource("2_2x1jc")
-theme_override_font_sizes/normal_font_size = 40
-text = "•Abringe, John Mark - Programmer 
-•Espiritu, Lucky Prince - User Interface/ Game Designer 
-• Macaspac, John Patrick - Map Designer / Programmer 
-• Rivera, Miggy - Programmer 
-• Roque, Jeric Jacob Reece - Programmer"
+theme_override_font_sizes/normal_font_size = 30
+text = "Programmer
+
+John Mark Abringe"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_top = -63.0
+offset_right = 419.0
+offset_bottom = 76.0
+theme_override_fonts/normal_font = ExtResource("2_2x1jc")
+theme_override_font_sizes/normal_font_size = 30
+text = "UI/UX & Game Designer
+
+Lucky Prince Espiritu"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -525.0
+offset_top = 133.0
+offset_right = -153.0
+offset_bottom = 280.0
+theme_override_fonts/normal_font = ExtResource("2_2x1jc")
+theme_override_font_sizes/normal_font_size = 30
+text = "Map Designer & Programmer
+
+John Patrick Macaspac"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -70.0
+offset_top = 131.0
+offset_right = 149.0
+offset_bottom = 278.0
+theme_override_fonts/normal_font = ExtResource("2_2x1jc")
+theme_override_font_sizes/normal_font_size = 30
+text = "Programmer
+
+Miggy G. Rivera"
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 127.0
+offset_right = 524.0
+offset_bottom = 274.0
+theme_override_fonts/normal_font = ExtResource("2_2x1jc")
+theme_override_font_sizes/normal_font_size = 30
+text = "Programmer
+
+Jeric Jacob Reece Roque"
+
+[node name="Blackscreen" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

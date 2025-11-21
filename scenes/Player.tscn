@@ -29,7 +29,7 @@ script/source = "extends CharacterBody2D
 signal fight_started
 signal fight_ended
 
-var speed := 100
+var speed := 200
 var last_direction := 1
 
 # --- Interaction states ---

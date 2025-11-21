@@ -9,6 +9,7 @@ script/source = "extends Control
 func _on_retry_pressed() -> void:
 	print(\"Retry button pressed!\")
 	PlayerStats.reset_health()  # Reset health before retrying
+	QuestManager.reset_for_retry()
 	get_tree().change_scene_to_file(\"res://scenes/game.tscn\")
 
 func _on_main_menu_pressed() -> void:
@@ -108,5 +109,5 @@ vertical_alignment = 1
 [connection signal="pressed" from="VBoxContainer/retry" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="VBoxContainer/retry" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/main_menu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="VBoxContainer/main_menu" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/main_menu" to="." method="_on_main_menu_pressed"]
